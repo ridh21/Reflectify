@@ -104,9 +104,6 @@ def create_faculty_schedule_dict(processed_df):
     
     return faculty_master
 
-
-
-
 @app.route('/', methods=['GET'])
 def home():
     return jsonify({'message': 'Welcome to the Faculty Schedule Processor API'})
