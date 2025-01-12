@@ -1,11 +1,27 @@
 from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 import pandas as pd
 import openpyxl
 from io import BytesIO
+import os
+from werkzeug.utils import secure_filename
+
+# Add these configurations at the top after imports
+UPLOAD_FOLDER = 'uploads'
+ALLOWED_EXTENSIONS = {'xlsx', 'xls'}
+
+# Create uploads directory if it doesn't exist
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 app = Flask(__name__)
 CORS(app)
+
+# Add this to your Flask app configuration
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def process_single_sheet(wb, sheet_name):
     sheet = wb[sheet_name]
@@ -88,23 +104,50 @@ def create_faculty_schedule_dict(processed_df):
     
     return faculty_master
 
+
+
+
+@app.route('/', methods=['GET'])
+def home():
+    return jsonify({'message': 'Welcome to the Faculty Schedule Processor API'})
+
 @app.route('/process-faculty-data/', methods=['POST'])
 def process_faculty_data():
+    print("This is the request", request.files)
+    
     if 'file' not in request.files:
-        return jsonify({'error': 'No file provided'}), 400
+        return jsonify({'error': 'No file part in the request'}), 400
         
     file = request.files['file']
-    wb = openpyxl.load_workbook(BytesIO(file.read()))
     
-    processed_matrices = {}
-    faculty_schedules = {}
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
+        
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(filepath)
+        
+        try:
+            wb = openpyxl.load_workbook(filepath)
+            processed_matrices = {}
+            faculty_schedules = {}
+            
+            for sheet_name in wb.sheetnames:
+                processed_df = process_single_sheet(wb, sheet_name)
+                processed_matrices[sheet_name] = processed_df
+                faculty_schedules[sheet_name] = create_faculty_schedule_dict(processed_df)
+            
+            return jsonify(faculty_schedules)
+            
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+        finally:
+            # Clean up the uploaded file
+            if os.path.exists(filepath):
+                os.remove(filepath)
     
-    for sheet_name in wb.sheetnames:
-        processed_df = process_single_sheet(wb, sheet_name)
-        processed_matrices[sheet_name] = processed_df
-        faculty_schedules[sheet_name] = create_faculty_schedule_dict(processed_df)
-    
-    return jsonify(faculty_schedules)
+    return jsonify({'error': 'Invalid file type'}), 400
 
 if __name__ == '__main__':
     app.run(port=8000, debug=True)
