@@ -1,0 +1,4018 @@
+{
+    "1": {
+        "AA": {
+            "Friday": [
+                {
+                    "subject": "DAA 5A",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CD 7E2*",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DAA 5A",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "CD 7E",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DAA 5A",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CD 7E1*",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Saturday": [],
+            "Thursday": [
+                {
+                    "subject": "DAA 5A3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CD 7E",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3F1",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "CD 7E",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DAA 5A2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CD 7E3*",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "DAA 5A1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CD 7E",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DAA 5A",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                }
+            ]
+        },
+        "ABP": {
+            "Friday": [
+                {
+                    "subject": "SE 5A",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "SE 5A",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "SE 5A",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "SE 5A1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "SE 5A2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "SE 5A",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "SE 5A3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                }
+            ]
+        },
+        "AJD": {
+            "Friday": [
+                {
+                    "subject": "CS 7E3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "SE 5B",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "SE 5B2",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "CS 7E",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "SE 5B",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "SE 5B3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DBMS 3B2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "SE 5B1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CS 7E",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CS 7E2",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "CS 7E",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "SE 5B",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "SE 5B",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CS 7E",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CS 7E1",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ]
+        },
+        "HMB": {
+            "Friday": [
+                {
+                    "subject": "CN 5D",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CN 5D",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "MP 5A",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "MP 5A2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CN 5D2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "CN 5D",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "MP 5A",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "CN 5D1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CN 5D",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "MP 5A",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "MP 5A3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "MP 5A1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "CN 5D3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "MP 5A",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ]
+        },
+        "JCK": {
+            "Friday": [
+                {
+                    "subject": "DS 7b1*",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DS 7b2*",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "AJP 5F2",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "AJP 5E1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DS 7D/7b",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "AJP 5E",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "AJP 5E",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "DS 7D/7b",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3B2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DS 7D2*",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "AJP 5E2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DS 7D/7b",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "AJP 5E",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "DS 7D/7b",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "AJP 5E",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ]
+        },
+        "JJK": {
+            "Friday": [
+                {
+                    "subject": "CS 7K3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "SE 5D",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "CS 7K",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "SE 5D3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DSA 3P1",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Saturday": [],
+            "Thursday": [
+                {
+                    "subject": "SE 5D2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CS 7K",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "SE 5D",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CS 7K2",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "CS 7K",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "SE 5D",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CS 7K1",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "SE 5D1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "SE 5D",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CS 7K",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                }
+            ]
+        },
+        "NVP": {
+            "Friday": [
+                {
+                    "subject": "DS 7B1*",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DS 7D1*",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "DNET 5A3/B3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DS 7B/7D",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DNET 5ALL",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "DNET 5E3/G3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DNET 5ALL",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "DS 7B/7D",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DS 7B2*",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "DNET 5C3/D3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DS 7B/7D",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DNET 5ALL",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "DS 7B/7D",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DNET 5F3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DNET 5ALL",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ]
+        },
+        "PM": {
+            "Friday": [
+                {
+                    "subject": "CN 5E",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CS 7B2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CN 5E3",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "CS 7B",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3Q2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "CN 5E2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "CN 5E",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CS 7B",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CN 5E",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "CS 7B",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CN 5E",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CS 7B3",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "CN 5E1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CS 7B",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CS 7B1",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ]
+        },
+        "RSG": {
+            "Friday": [
+                {
+                    "subject": "SE 5C",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "CS 7b",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "SE 5C",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CS 7b2",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "SE 5C2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "SE 5C3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CS 7b",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "SE 5C",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3G3",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "CS 7b",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "SE 5C",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CS 7b3",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "SE 5C1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CS 7b",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CS 7b1",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ]
+        },
+        "TNG": {
+            "Friday": [
+                {
+                    "subject": "BT 7D2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CN 5F",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "CN 5F1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "BT 7D",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "BT 7D1",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "CN 5F",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "BT 7D",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CN 5F",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3P3",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "CN 5F3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "BT 7D",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "BT 7b2",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "BT 7D",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CN 5F",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CN 5F2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ]
+        },
+        "VB": {
+            "Friday": [
+                {
+                    "subject": "BT 7K2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "ITW 3P3",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "AJP 5B1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "BT 7K",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "AJP 5B",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "AJP 5B",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "BT 7K",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "AJP 5G2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "BT 7K1",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "AJP 5B2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "BT 7K",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "AJP 5B",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "BT 7K",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3C1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "AJP 5B",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ]
+        }
+    },
+    "2": {
+        "AMP": {
+            "Friday": [
+                {
+                    "subject": "CD 7B3*",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "TOC 5C",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "CD 7B",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3C2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CD 7B2*",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "ITW 3B1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "CD 7B",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CD 7B1*",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "CD 7B",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "TOC 5C",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3E3",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "CD 7B",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "TOC 5C",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "TOC 5C",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ]
+        },
+        "DT": {
+            "Friday": [
+                {
+                    "subject": "DAA 5B",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "IP 7I3*",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DAA 5B1",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "IP 7B/7D/7IT",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "IP 7B3*",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "DAA 5B2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DAA 5B",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "IP 7B/7D/7IT",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DAA 5B",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "DAA 5B3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "IP 7B/7D/7IT",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "IP 7D3*",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "IP 7B/7D/7IT",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DAA 5B ",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3P1",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ]
+        },
+        "HCP": {
+            "Friday": [
+                {
+                    "subject": "IP 7K3*",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "IP 7E3*",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "OT 5A3/B3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "                                                                                                                                                                                                                                                ",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "OT 5ALL",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "OT 5E3/G3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "OT 5ALL",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "IP 7E/K/b",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "IP 7b3*",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "OT 5C3/D3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "IP 7E/K/b",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "OT 5ALL",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "IP 7E/K/b",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "OT 5F3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "OT 5ALL",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ]
+        },
+        "HT": {
+            "Friday": [
+                {
+                    "subject": "DSA 3F",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "DSA 3A",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3F",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                }
+            ],
+            "Saturday": [],
+            "Thursday": [
+                {
+                    "subject": "DSA 3A",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3F",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3A",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "DSA 3A",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3F",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "DSA 3F",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3A",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ]
+        },
+        "KR": {
+            "Friday": [
+                {
+                    "subject": "CD 7b3*",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CD 7b1*",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DAA 5E2",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "CD 7b",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DAA 5E",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "DAA 5E1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "ITW 3C1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "DAA 5E",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CD 7b",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CD 7b2*",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "CD 7b",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DAA 5E",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DAA 5E",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "DAA 5E3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CD 7b",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                }
+            ]
+        },
+        "MV": {
+            "Friday": [
+                {
+                    "subject": "CD 7K2*",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DAA 5G",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "CD 7K",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DAA 5G",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CD 7K3*",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "DAA 5G2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "DAA 5G1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CD 7K",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DAA 5G",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "CD 7K",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DAA 5G",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3P1",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "DAA 5G3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CD 7K",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CD 7K1*",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ]
+        },
+        "OP": {
+            "Friday": [
+                {
+                    "subject": "BT 7B1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DBMS 3G1",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "MP 5E3 ",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "BT 7B",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "BT 7b1",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "DBMS 3G2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "BT 7B",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "TOC 5F",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "TOC 5F",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "BT 7B",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "TOC 5F",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "BT 7B2",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "BT 7B",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3D2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "TOC 5F",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ]
+        },
+        "PKP": {
+            "Friday": [
+                {
+                    "subject": "TOC 5A",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CD 7D3*",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DSA 3F2",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "CD 7D",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3C1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "TOC 5A",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "TOC 5A",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3F3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "TOC 5A",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CD 7D",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CD 7D1*",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "CD 7D",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3C2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CD 7D2*",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "CD 7D",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                }
+            ]
+        },
+        "RW": {
+            "Friday": [
+                {
+                    "subject": "MP 5C",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3B1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "MP 5C",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "MP 5C2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "NLP 7E/K/b",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "MP 5C1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DBMS 3D2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "NLP 7E/K/b",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "MP 5C",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3E3",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "NLP 7E/K/b",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "NLP 7K3",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "NLP 7E/K/b",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "MP 5C",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "NLP 7E3/7b3",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ]
+        },
+        "TP": {
+            "Friday": [
+                {
+                    "subject": "BT 7E2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "ITW 3C3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "AJP 5C1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "BT 7E/7b",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "AJP 5C/5F",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "AJP 5C/5F",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "BT 7E/7b",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3C2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "BT 7E1",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "AJP 5C2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "BT 7E/7b",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "AJP 5C/5F",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "BT 7E/7b",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "AJP 5F1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "AJP 5C/5F",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ]
+        },
+        "VMP": {
+            "Friday": [
+                {
+                    "subject": "ITW 3P1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "SE 5E",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "SE 3E1",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "SE 5E2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DS 7E/K",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DS 7E2*/7K1*",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "ITW 3D1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "DS 7E/K",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "SE 5E",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "SE 5E",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "SE 5E3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DS 7E/K",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DS 7E1*",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "DS 7E/K",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "SE 5E",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DS 7K2*",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ]
+        },
+        "VP": {
+            "Friday": [
+                {
+                    "subject": "CS 7D3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DAA 5C",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3F3",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "CS 7D",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DAA 5C",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CS 7D2",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "DAA 5C3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "DAA 5C1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CS 7D",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DAA 5C",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "CS 7D",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3Q3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DAA 5C",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "DAA 5C2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CS 7D",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CS 7D1",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ]
+        }
+    },
+    "3": {
+        "AHS": {
+            "Friday": [
+                {
+                    "subject": "MP 5F",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "TOC 5D",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "MP 5F3",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "MP 5F2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DSA 3D1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "MP 5F",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "TOC 5D",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "MP 5F",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "MP 5F1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DSA 3A1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "TOC 5D",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "DSA 3D2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "MP 5F",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3D3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "TOC 5D",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ]
+        },
+        "AP": {
+            "Friday": [
+                {
+                    "subject": "SE 5F",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CN 5A",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "SE 5F1",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "CN 5A1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "SE 5F",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3F2",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "SE 5F",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "SE 5F3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CN 5A",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CN 5A",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "SE 5F2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CN 5A3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "SE 5F",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "CN 5A2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CN 5A",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                }
+            ]
+        },
+        "AVD": {
+            "Friday": [
+                {
+                    "subject": "ITW 3A",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3A3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "ITW 3A",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "AJP 5G1 ",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "AJP 5A/5G",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "AJP 5A/5G",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "AJP 5A2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "ITW 3A2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "ITW 3E2",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "AJP 5A1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "ITW 3A3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "AJP 5A/5G",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "ITW 3A",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3A1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "AJP 5A/5G",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ]
+        },
+        "BBP": {
+            "Friday": [
+                {
+                    "subject": "TOC 5G",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "TOC 5G",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3G3",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "ITW 3A2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "ITW 3G2",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "ITW 3G",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3G1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "ITW 3Q2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "ITW 3G2",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "TOC 5G",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3G",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3G3",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "ITW 3G",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "TOC 5G",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3G1",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ]
+        },
+        "HJP": {
+            "Friday": [
+                {
+                    "subject": "CN 5C",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "MP 5G",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3E3",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "CN 5C3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "MP 5G",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CN 5C",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "MP 5G1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CN 5C",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "CN 5C2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "MP 5G3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CN 5C",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "CN 5C1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "MP 5G2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "MP 5G",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "MP 5G",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ]
+        },
+        "JJP": {
+            "Friday": [
+                {
+                    "subject": "DSA 3B",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DAA 5F",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3E2",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "DAA 5F3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DAA 5F",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3B",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "DSA 3B",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3B3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "DAA 5F2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DSA 3B1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DAA 5F",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "DAA 5F1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DAA 5F",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3B",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "DSA 3B2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DSA 3B",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ]
+        },
+        "KRK": {
+            "Friday": [
+                {
+                    "subject": "CN 5G",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3E",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3E1",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "CN 5G3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DBMS 3E",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3E3",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "DBMS 3E2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "CN 5G2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CN 5G1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CN 5G",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "DBMS 3E",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CN 5G",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CN 5G",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "DBMS 3E",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3E",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3E2",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ]
+        },
+        "KV": {
+            "Friday": [
+                {
+                    "subject": "DAA 5D",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3Q",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3Q2",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "DAA 5D3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DAA 5D1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DAA 5D",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "DBMS 3Q",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DAA 5D",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "DBMS 3Q",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3Q3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DBMS 3Q",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "DBMS 3Q",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3Q1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DAA 5D",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "DAA 5D2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DBMS 3Q2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ]
+        },
+        "MNC": {
+            "Friday": [
+                {
+                    "subject": "ITW 3F",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CN 5B",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "CN 5B2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "ITW 3B2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "CN 5B1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "ITW 3F1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "CN 5B3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "CN 5B",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3F",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CN 5B",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "ITW 3C3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "ITW 3F3",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "ITW 3F",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "CN 5B",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3F1",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ]
+        },
+        "PDN": {
+            "Friday": [
+                {
+                    "subject": "ITW 3D",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3D3 ",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "ITW 3D",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "SE 5G",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "SE 5G2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "ITW 3D2 ",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "SE 5G",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "ITW 3D",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "SE 5G",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "SE 5G3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "ITW 3D2 ",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "SE 5G",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3D3 ",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "SE 5G1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "ITW 3D1 ",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ]
+        },
+        "SCP": {
+            "Friday": [
+                {
+                    "subject": "DSA 3G",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "TOC 5E",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3P1",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "DSA 3G",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "TOC 5E",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3G1",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "DSA 3G",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3C2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "DSA 3G",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "TOC 5E",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3F3",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "DSA 3G",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3C1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DSA 3G2",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "TOC 5E",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3G3",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ]
+        }
+    },
+    "4": {
+        "BP": {
+            "Friday": [
+                {
+                    "subject": "DBMS 3A",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3A1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "MP 5D",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "MP 5D2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DBMS 3A",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "DBMS 3A",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3A2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "MP 5D3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DBMS 3A3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DBMS 3A",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "MP 5D",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "MP 5D1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "MP 5D",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3A",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "MP 5C3 ",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "MP 5D",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                }
+            ]
+        },
+        "BZ": {
+            "Friday": [
+                {
+                    "subject": "DBMS 3Q1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DBMS 3C1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DBMS 3C",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "DSA 3P",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3C",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3C3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "ITW 3E2",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "DSA 3P",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3A3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "DSA 3P",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "DBMS 3C",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3P",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3P2",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "DBMS 3C",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3P",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3P3",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ]
+        },
+        "HPS": {
+            "Friday": [
+                {
+                    "subject": "TOC 5B",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3B2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DBMS 3F1 ",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "TOC 5B",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3F",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3F3",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "DBMS 3F",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3F2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "DBMS 3F",
+                    "time_slot": 1,
+                    "type": "Lab"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "DBMS 3F",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "TOC 5B",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3F1",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "TOC 5B",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3A2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DBMS 3F2",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ]
+        },
+        "JHG": {
+            "Friday": [
+                {
+                    "subject": "DSA 3D",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3G",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "1C FOP TUT",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3Q1",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "DBMS 3G",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "FOP 1P3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DBMS 3G3",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "DSA 3D",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "1A FOP TUT",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "DBMS 3G",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3G",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3D",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "FOP 1Q2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "FOP 1P1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DSA 3D",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "FOP 1Q3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DBMS 3G",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3D",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ]
+        },
+        "KP": {
+            "Friday": [
+                {
+                    "subject": "DSA 3C",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "1G FOP TUT",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "DBMS 3D",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3D3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DSA 3C",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3D",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "1P FOP TUT",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3C",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3A1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "DSA 3C",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3D3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DBMS 3D",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "DBMS 3D",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3D1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DBMS 3G1",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "ITW 3B1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DBMS 3D",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3C",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ]
+        },
+        "L1": {
+            "Friday": [
+                {
+                    "subject": "ITW 3Q3 (VB)",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DSA 3A2 (JJK)",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "DBMS 3P  (HPS)",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3A3 (TNG)",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DBMS 3P3 (AJD)",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "ITW 3C (NPC)",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "ITW 3C (SMC)",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3P (TP)",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3F2 (AMP)",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "DBMS 3P (HPS)",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3A1 (DT) ",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "DBMS 3P(TP)",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3C3 (HMB)",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DBMS 3P2 (AA)",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ]
+        },
+        "L2": {
+            "Friday": [
+                {
+                    "subject": "DBMS 3P2(OP)",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DSA 3Q (MV)",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3E(AMP)",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "ITW 3E (SMC)",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3Q (KR)",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3Q1(BP)",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DSA 3Q (KR)",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "DSA 3Q (MV)",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "DBMS 3C3 (HCP)",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DSA 3E1 (PKP)",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "DSA 3Q2 (NVP)",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DBMS 3E1 (RSG)",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "DSA 3Q3(JCK)",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "ITW 3E1 (PM)",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ]
+        },
+        "NPC": {
+            "Friday": [
+                {
+                    "subject": "DBMS 3D1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "MP 5B3",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "DBMS 3Q3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "MP 5B",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "ITW 3P",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "MP 5B2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "ITW 3P",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "MP 5B",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "MP 5B1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "ITW 3P",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "MP 5B",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3P3",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "DBMS 3C2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "MP 5B",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ]
+        },
+        "RKS": {
+            "Friday": [
+                {
+                    "subject": "MP 5E",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "FOP 1P1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DBMS 3B",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "DBMS 3B",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3B3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "MP 5E",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "1Q FOP TUT",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "MP 5E",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "DBMS 3B",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3B3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DBMS 3B",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "MP 5E1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DBMS 3B1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "DBMS 3B",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "MP 5E2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "FOP 1P2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "MP 5E",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ]
+        },
+        "RMM": {
+            "Friday": [
+                {
+                    "subject": "FOP 1Q3",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "FOP 1P2",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "1E FOP TUT",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "FOP 1Q1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "FOP Q",
+                    "time_slot": 4,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "FOP P",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "1D FOP TUT",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3Q",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3E1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "FOP 1Q2",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "FOP 1P3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "FOP 1Q1",
+                    "time_slot": 1,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "ITW 3Q",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "ITE 3Q",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "FOP P",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "FOP Q",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DBMS 3G2",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ]
+        },
+        "SMC": {
+            "Friday": [
+                {
+                    "subject": "DSA 3E",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3B3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "1B FOP TUT",
+                    "time_slot": 6,
+                    "type": "Lecture"
+                }
+            ],
+            "Monday": [
+                {
+                    "subject": "ITW 3B",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3E",
+                    "time_slot": 3,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3P2",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Saturday": [
+                {
+                    "subject": "1F FOP TUT",
+                    "time_slot": 1,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3E",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "DSA 3E3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Thursday": [
+                {
+                    "subject": "DSA 3E",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3P2 ",
+                    "time_slot": 5,
+                    "type": "Lab"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "subject": "DSA 3E",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3B3",
+                    "time_slot": 3,
+                    "type": "Lab"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "subject": "ITW 3B",
+                    "time_slot": 2,
+                    "type": "Lecture"
+                },
+                {
+                    "subject": "ITW 3Q1",
+                    "time_slot": 3,
+                    "type": "Lab"
+                },
+                {
+                    "subject": "ITW 3B",
+                    "time_slot": 5,
+                    "type": "Lecture"
+                }
+            ]
+        }
+    },
+    "Sheet1": {}
+}
