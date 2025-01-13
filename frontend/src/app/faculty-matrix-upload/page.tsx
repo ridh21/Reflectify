@@ -30,10 +30,11 @@ export default function FacultyMatrixUpload() {
     setIsLoading(true);
     try {
       const response = await fetch(
-        "http://localhost:8000/process-faculty-data/",
+        "http://localhost:8000/process-faculty-matrix/",
         {
           method: "POST",
           body: formData,
+          mode: "cors",
         }
       );
       const result = await response.json();

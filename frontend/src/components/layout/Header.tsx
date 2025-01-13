@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard" },
-  { name: "Upload Faculty Matrix Excel", href: "/facutly-matrix-upload" },
+  { name: "Upload Faculty Matrix Excel", href: "/faculty-matrix-upload" },
 ];
 
 export function Header() {
