@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 const navigation = [
   { name: "Dashboard", href: "/dashboard" },
   { name: "Upload Faculty Matrix Excel", href: "/faculty-matrix-upload" },
+  { name: "Upload Data", href: "/upload-data" },
 ];
 
 export function Header() {
@@ -19,7 +20,7 @@ export function Header() {
           <div className="flex items-center gap-8">
             <Link href="/" className="flex items-center gap-2">
               <motion.span
-                className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
+                className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
                 animate={{
                   opacity: [0.9, 1, 0.9],
                 }}
@@ -38,7 +39,7 @@ export function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`relative px-2 py-1 text-sm font-medium transition-colors
+                  className={`relative px-2 py-1 text-sm font-semibold transition-colors
                     ${
                       pathname === item.href
                         ? "text-primary"
