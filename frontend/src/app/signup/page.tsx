@@ -1,94 +1,39 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function SignupPage() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Add signup logic here
+  const handleGoogleSignup = () => {
+    window.location.href = "http://localhost:4000/auth/google";
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+    <div className="flex min-h-screen flex-col items-center justify-center">
+      <motion.div
+        className="w-full max-w-md space-y-8 p-8 bg-white rounded-xl shadow-lg"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-gray-900">
-            Create your account
-          </h2>
-          <p className="mt-2 text-sm text-gray-600">
-            Already have an account?{" "}
-            <Link
-              href="/login"
-              className="font-medium text-primary hover:text-primary/90"
-            >
-              Sign in
-            </Link>
-          </p>
+          <h2 className="text-3xl font-bold">Create Account</h2>
+          <p className="mt-2 text-gray-600">Get started with Reflectify</p>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="space-y-4">
-            <div>
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Full name
-              </label>
-              <input
-                id="name"
-                type="text"
-                required
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Email address
-              </label>
-              <input
-                id="email"
-                type="email"
-                required
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                required
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-          </div>
-          <button
-            type="submit"
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/90"
-          >
-            Create account
-          </button>
-        </form>
-      </div>
+
+        <button
+          onClick={handleGoogleSignup}
+          className="w-full flex items-center justify-center gap-2 bg-white border border-gray-300 rounded-lg px-4 py-2 text-gray-700 hover:bg-gray-50 transition-colors"
+        >
+          <Image
+            src="https://authjs.dev/img/providers/google.svg"
+            alt="Google"
+            width={20}
+            height={20}
+            className="w-5 h-5"
+          />
+          Sign up with Google
+        </button>
+      </motion.div>
     </div>
   );
 }

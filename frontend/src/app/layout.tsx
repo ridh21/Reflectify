@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
-// import Footer from "@/components/layout/Footer";
+import page_icon from "/public/review.png";
 
 const googleSans = DM_Sans({
   subsets: ["latin"],
@@ -12,6 +12,9 @@ const googleSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
+  icons: {
+    icon: page_icon.src,
+  },
   title: "Reflectify - Faculty Schedule Management",
   description: "Efficiently manage and organize faculty schedules",
   keywords: ["schedule", "faculty", "management", "education"],
