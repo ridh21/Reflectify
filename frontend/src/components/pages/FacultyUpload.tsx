@@ -11,7 +11,7 @@ interface ScheduleData {
   is_lab: boolean;
   time_slot: number;
   day: string;
-  faculty_code: string;
+  faculty_name: string;
 }
 
 export function FacultyUpload() {
@@ -37,6 +37,7 @@ export function FacultyUpload() {
         }
       );
       const result = await response.json();
+      console.log("Result:", result);
       setSchedules(result.data);
     } catch (error) {
       console.error("Error uploading file:", error);
@@ -83,7 +84,7 @@ export function FacultyUpload() {
                   <p>Day: {schedule.day}</p>
                   <p>Time Slot: {schedule.time_slot}</p>
                   <p>Type: {schedule.is_lab ? "Lab" : "Lecture"}</p>
-                  <p>Faculty: {schedule.faculty_code}</p>
+                  <p>Faculty: {schedule.faculty_name}</p>
                 </div>
               </div>
             </Card>

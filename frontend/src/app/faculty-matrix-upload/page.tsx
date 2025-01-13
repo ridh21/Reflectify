@@ -37,6 +37,7 @@ export default function FacultyMatrixUpload() {
         }
       );
       const result = await response.json();
+      console.log("Result:", result);
       setSchedules(result.data);
     } catch (error) {
       console.error("Error uploading file:", error);
