@@ -21,7 +21,6 @@ export function Header() {
               <motion.span
                 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
                 animate={{
-                  backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
                   opacity: [0.9, 1, 0.9],
                 }}
                 transition={{
@@ -29,10 +28,6 @@ export function Header() {
                   ease: "easeInOut",
                   repeat: Infinity,
                   repeatType: "reverse",
-                }}
-                style={{
-                  backgroundSize: "200% 200%",
-                  WebkitBackgroundClip: "text",
                 }}
               >
                 Reflectify

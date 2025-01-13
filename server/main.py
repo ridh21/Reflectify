@@ -1,9 +1,9 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
-import pandas as pd
-import openpyxl
 import os
-from werkzeug.utils import secure_filename
+import openpyxl #type: ignore
+import pandas as pd #type: ignore
+from flask_cors import CORS #type: ignore
+from flask import Flask, request, jsonify #type: ignore
+from werkzeug.utils import secure_filename ##type: ignore
 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'xlsx', 'xls'}
