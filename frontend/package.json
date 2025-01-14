@@ -16,7 +16,7 @@
     "clsx": "^2.1.1",
     "exceljs": "^4.4.0",
     "framer-motion": "^11.17.0",
-    "lucide-react": "^0.471.0",
+    "lucide-react": "^0.471.1",
     "next": "15.1.4",
     "nodemailer": "^6.9.16",
     "react": "^19.0.0",

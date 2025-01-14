@@ -30,11 +30,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className={`${googleSans.variable} font-sans antialiased min-h-screen flex flex-col bg-background`}
+        className={`${googleSans.variable} font-sans antialiased flex flex-col bg-background`}
       >
         <AuthProvider>
           <Header />
-          <main className="flex-1">{children}</main>
+          <main className="m-0 p-0">{children}</main>
         </AuthProvider>
       </body>
     </html>
