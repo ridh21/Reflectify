@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useAuth } from "@/context/AuthContext";
 
 const textVariants = {
   hidden: { opacity: 0, filter: "blur(10px)" },
@@ -33,6 +34,8 @@ const cardVariants = {
 };
 
 export default function Home() {
+  const { user } = useAuth();
+
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-1">
@@ -67,26 +70,28 @@ export default function Home() {
                 transition={{ delay: 0.6 }}
               >
                 <Link
-                  href="/faculty-matrix-upload"
+                  href={user ? "/faculty-matrix-upload" : "/login"}
                   className="rounded-lg bg-primary px-6 py-3 text-base font-medium text-white hover:bg-primary/90 transition-colors"
                 >
-                  Upload Matrix
+                  {user ? "Upload Matrix" : "Get Started"}
                 </Link>
               </motion.div>
 
-              <motion.div
-                variants={buttonVariants}
-                initial="hidden"
-                animate="visible"
-                transition={{ delay: 0.7 }}
-              >
-                <Link
-                  href="/dashboard"
-                  className="rounded-lg bg-gray-100 px-6 py-3 text-base font-medium text-gray-900 hover:bg-gray-200 transition-colors"
+              {user && (
+                <motion.div
+                  variants={buttonVariants}
+                  initial="hidden"
+                  animate="visible"
+                  transition={{ delay: 0.7 }}
                 >
-                  View Dashboard
-                </Link>
-              </motion.div>
+                  <Link
+                    href="/dashboard"
+                    className="rounded-lg bg-gray-100 px-6 py-3 text-base font-medium text-gray-900 hover:bg-gray-200 transition-colors"
+                  >
+                    View Dashboard
+                  </Link>
+                </motion.div>
+              )}
             </div>
           </div>
 

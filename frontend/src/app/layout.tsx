@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
+import { AuthProvider } from "@/context/AuthContext";
 import page_icon from "/public/review.png";
 
 const googleSans = DM_Sans({
@@ -31,9 +32,10 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${googleSans.variable} font-sans antialiased min-h-screen flex flex-col bg-background`}
       >
-        <Header />
-        <main className="flex-1">{children}</main>
-        {/* <Footer /> */}
+        <AuthProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+        </AuthProvider>
       </body>
     </html>
   );

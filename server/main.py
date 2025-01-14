@@ -1,4 +1,5 @@
 import os
+import requests #type: ignore
 import openpyxl #type: ignore
 import pandas as pd #type: ignore
 from flask_cors import CORS #type: ignore
@@ -400,6 +401,11 @@ def upload_faculty_matrix():
         filename = secure_filename(file.filename)
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], 'faculty_matrix.xlsx')
         file.save(filepath)
+        
+        # Send to Node.js
+        files = {'facultyMatrix': open(filepath, 'rb')}
+        nodejs_response = requests.post('http://localhost:4000/api/upload/faculty-matrix', files=files)
+        
         results = final_func(filepath, college="LDRP-ITR", department="CE")
         return jsonify(results)
     
@@ -407,17 +413,30 @@ def upload_faculty_matrix():
 
 @app.route('/student-data/', methods=['POST'])
 def upload_student_data():
-    if 'studentData' not in request.files:
-        return jsonify({'message': 'No file uploaded'}), 400
+    try:
+        if 'studentData' not in request.files:
+            return jsonify({'message': 'No file uploaded'}), 400
+            
+        file = request.files['studentData']
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], 'student_data.xlsx')
+            file.save(filepath)
+            
+            with open(filepath, 'rb') as f:
+                files = {
+                    'studentData': ('student_data.xlsx', f, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+                }
+                nodejs_response = requests.post('http://localhost:4000/api/upload/student-data', files=files)
+                
+                if nodejs_response.ok:
+                    return jsonify(nodejs_response.json())
+                return jsonify({'message': 'Node.js processing failed', 'details': nodejs_response.text}), nodejs_response.status_code
         
-    file = request.files['studentData']
-    if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'], 'student_data.xlsx')
-        file.save(filepath)
-        return jsonify({'message': 'Student data file uploaded successfully'})
-    
-    return jsonify({'message': 'Invalid file format'}), 400
+        return jsonify({'message': 'Invalid file format'}), 400
+        
+    except Exception as e:
+        return jsonify({'message': f'Processing error: {str(e)}'}), 500
 
 @app.route('/faculty-data/', methods=['POST'])
 def upload_faculty_data():
@@ -429,23 +448,46 @@ def upload_faculty_data():
         filename = secure_filename(file.filename)
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], 'faculty_data.xlsx')
         file.save(filepath)
+        
+        # Send to Node.js
+        files = {'facultyData': open(filepath, 'rb')}
+        nodejs_response = requests.post('http://localhost:4000/faculty-data', files=files)
+        
         return jsonify({'message': 'Faculty data file uploaded successfully'})
     
     return jsonify({'message': 'Invalid file format'}), 400
 
 @app.route('/subject-data/', methods=['POST'])
 def upload_subject_data():
-    if 'subjectData' not in request.files:
-        return jsonify({'message': 'No file uploaded'}), 400
+    try:
+        if 'subjectData' not in request.files:
+            return jsonify({'message': 'No file uploaded'}), 400
+            
+        file = request.files['subjectData']
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], 'subject_data.xlsx')
+            file.save(filepath)
+            
+            print(f"File saved at: {filepath}")
+            print(f"File size: {os.path.getsize(filepath)} bytes")
+            
+            with open(filepath, 'rb') as f:
+                files = {
+                    'subjectData': ('subject_data.xlsx', f, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+                }
+                print("Sending to Node.js...")
+                nodejs_response = requests.post('http://localhost:4000/api/upload/subject-data', files=files)
+                print(f"Node.js Response Status: {nodejs_response.status_code}")
+                print(f"Node.js Response Content: {nodejs_response.text}")
+                
+                return jsonify(nodejs_response.json())
         
-    file = request.files['subjectData']
-    if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'], 'subject_data.xlsx')
-        file.save(filepath)
-        return jsonify({'message': 'Subject data file uploaded successfully'})
-    
-    return jsonify({'message': 'Invalid file format'}), 400
+        return jsonify({'message': 'Invalid file format'}), 400
+        
+    except Exception as e:
+        print(f"Error: {str(e)}")
+        return jsonify({'message': f'Processing error: {str(e)}'}), 500
 
 if __name__ == '__main__':
     app.run(port=8000, debug=True)

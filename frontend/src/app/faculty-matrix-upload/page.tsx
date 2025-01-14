@@ -70,16 +70,27 @@ export default function FacultyMatrixUpload() {
       return;
     }
 
+    console.log("Selected file:", {
+      name: selectedFile.name,
+      type: selectedFile.type,
+      size: selectedFile.size,
+    });
+
     const formData = new FormData();
     formData.append("facultyMatrix", selectedFile);
 
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:8000/faculty-matrix", {
-        method: "POST",
-        body: formData,
-        mode: "cors",
-      });
+      console.log("Sending request to server...");
+      const response = await fetch(
+        "http://localhost:4000/api/upload/faculty-matrix",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      console.log("Response received:", response.status);
+
       const results = await response.json();
 
       if (response.ok) {
@@ -129,6 +140,7 @@ export default function FacultyMatrixUpload() {
         toast.error(results.message || "Upload failed");
       }
     } catch (error) {
+      console.error("Upload error:", error);
       toast.error("Error processing file. Please try again.");
     } finally {
       setIsLoading(false);

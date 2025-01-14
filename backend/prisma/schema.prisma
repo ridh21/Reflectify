@@ -16,7 +16,10 @@ enum UserRole {
 model User {
   id        String   @id @default(uuid())
   email     String   @unique
-  password  String
+  password  String?
+  name      String
+  picture   String?
+  googleId  String?  @unique
   role      UserRole @default(USER)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -39,11 +42,14 @@ model Departments {
   students  Students[]
   createdAt DateTime    @default(now())
   updatedAt DateTime    @updatedAt
+  Semesters Semesters[]
 }
 
 model Semesters {
   id                 String               @id @default(cuid())
   name               String
+  department_id      String
+  department         Departments          @relation(fields: [department_id], references: [id])
   divisions          Divisions[]
   subjects           Subjects[]
   subjectAllocations SubjectAllocations[]

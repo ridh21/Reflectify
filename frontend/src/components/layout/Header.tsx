@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
+import { useAuth } from "@/context/AuthContext";
+import Image from "next/image";
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard" },
@@ -12,6 +14,7 @@ const navigation = [
 
 export function Header() {
   const pathname = usePathname();
+  const { user } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/75 backdrop-blur-lg">
@@ -60,18 +63,43 @@ export function Header() {
           </div>
 
           <div className="flex items-center gap-4">
-            <Link
-              href="/login"
-              className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
-            >
-              Sign in
-            </Link>
-            <Link
-              href="/signup"
-              className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary/90 transition-colors"
-            >
-              Get Started
-            </Link>
+            {user ? (
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <Image
+                    src={user.picture}
+                    alt={user.name}
+                    width={32}
+                    height={32}
+                    className="rounded-full"
+                  />
+                  <span className="font-medium">{user.name}</span>
+                </div>
+                <button
+                  onClick={() =>
+                    (window.location.href = "http://localhost:4000/auth/logout")
+                  }
+                  className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  Sign in
+                </Link>
+                <Link
+                  href="/signup"
+                  className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary/90 transition-colors"
+                >
+                  Get Started
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>
