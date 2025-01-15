@@ -2,46 +2,146 @@
 
 import { useState } from "react";
 import { Card } from "@/components/ui/Card";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ExcelJS from "exceljs";
 
-interface ScheduleData {
-  subject_code: string;
-  semester: number;
-  division: string;
-  batch?: string;
-  is_lab: boolean;
-  time_slot: number;
-  day: string;
-  faculty_code: string;
+interface ClassSchedule {
+  [key: string]: {
+    subjects: {
+      subject_code: string;
+      type: "Lecture" | "Lab";
+      faculty_code: string;
+      batch: string;
+    }[];
+  };
 }
 
 export default function FacultyMatrixUpload() {
-  const [schedules, setSchedules] = useState<ScheduleData[]>([]);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [processedData, setProcessedData] = useState<ClassSchedule | null>(
+    null
+  );
   const [isLoading, setIsLoading] = useState(false);
+  const [activeTable, setActiveTable] = useState<any[] | null>(null);
 
-  const handleFileUpload = async (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    if (!event.target.files?.length) return;
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0] || null;
+    if (file && !file.name.match(/\.(xlsx|xls)$/)) {
+      toast.error("Please upload only Excel files");
+      return;
+    }
+    setSelectedFile(file);
+    setActiveTable(null);
+  };
 
-    const file = event.target.files[0];
+  const handlePreview = async () => {
+    if (!selectedFile) {
+      toast.error("Please select a file first");
+      return;
+    }
+
+    const workbook = new ExcelJS.Workbook();
+    const arrayBuffer = await selectedFile.arrayBuffer();
+    await workbook.xlsx.load(arrayBuffer);
+
+    const worksheet = workbook.worksheets[0];
+    const jsonData: Record<string, string | number | boolean | null>[] = [];
+
+    const headers = worksheet.getRow(1).values as string[];
+
+    worksheet.eachRow((row, rowNumber) => {
+      if (rowNumber > 1) {
+        const rowData: Record<string, string | number | boolean | null> = {};
+        row.eachCell((cell, colNumber) => {
+          const cellValue = cell.value;
+          rowData[headers[colNumber]] = cellValue?.toString() ?? null;
+        });
+        jsonData.push(rowData);
+      }
+    });
+
+    setActiveTable(jsonData);
+  };
+
+  const handleUpload = async () => {
+    if (!selectedFile) {
+      toast.error("Please select a file first");
+      return;
+    }
+
+    console.log("Selected file:", {
+      name: selectedFile.name,
+      type: selectedFile.type,
+      size: selectedFile.size,
+    });
+
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append("facultyMatrix", selectedFile);
 
     setIsLoading(true);
     try {
+      console.log("Sending request to server...");
       const response = await fetch(
-        "http://localhost:8000/process-faculty-matrix/",
+        "http://localhost:4000/api/upload/faculty-matrix",
         {
           method: "POST",
           body: formData,
-          mode: "cors",
         }
       );
-      const result = await response.json();
-      console.log("Result:", result);
-      setSchedules(result.data);
+      console.log("Response received:", response.status);
+
+      const results = await response.json();
+
+      if (response.ok) {
+        toast.success("File processed successfully");
+        const newProcessedData: ClassSchedule = {};
+        const college = Object.keys(results)[0];
+        const department = Object.keys(results[college])[0];
+
+        Object.entries(results[college][department]).forEach(
+          ([semester, divisions]) => {
+            Object.entries(divisions as any).forEach(([division, subjects]) => {
+              const classKey = `${semester}${division}`;
+              if (!newProcessedData[classKey]) {
+                newProcessedData[classKey] = { subjects: [] };
+              }
+
+              Object.entries(subjects as any).forEach(
+                ([subject, details]: [string, any]) => {
+                  if (details.lectures.designated_faculty) {
+                    newProcessedData[classKey].subjects.push({
+                      subject_code: subject,
+                      type: "Lecture",
+                      faculty_code: details.lectures.designated_faculty,
+                      batch: "-",
+                    });
+                  }
+                  Object.entries(details.labs || {}).forEach(
+                    ([batch, lab]: [string, any]) => {
+                      newProcessedData[classKey].subjects.push({
+                        subject_code: subject,
+                        type: "Lab",
+                        faculty_code: lab.designated_faculty,
+                        batch,
+                      });
+                    }
+                  );
+                }
+              );
+            });
+          }
+        );
+
+        setProcessedData(newProcessedData);
+        setSelectedFile(null);
+        setActiveTable(null);
+      } else {
+        toast.error(results.message || "Upload failed");
+      }
     } catch (error) {
-      console.error("Error uploading file:", error);
+      console.error("Upload error:", error);
+      toast.error("Error processing file. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -49,6 +149,7 @@ export default function FacultyMatrixUpload() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <ToastContainer position="top-right" />
       <div className="space-y-8">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">
@@ -60,11 +161,11 @@ export default function FacultyMatrixUpload() {
         </div>
 
         <Card>
-          <div className="space-y-4">
+          <div className="space-y-4 p-6">
             <input
               type="file"
               accept=".xlsx,.xls"
-              onChange={handleFileUpload}
+              onChange={handleFileChange}
               className="block w-full text-sm text-gray-500
                 file:mr-4 file:py-2 file:px-4
                 file:rounded-full file:border-0
@@ -73,9 +174,33 @@ export default function FacultyMatrixUpload() {
                 hover:file:bg-primary/20
                 cursor-pointer"
             />
-            <p className="text-xs text-gray-500">
-              Supported formats: .xlsx, .xls
-            </p>
+            {selectedFile && (
+              <p className="mt-1 text-sm text-green-600">
+                Selected: {selectedFile.name}
+              </p>
+            )}
+            <div className="flex gap-4 mt-4">
+              <button
+                onClick={handlePreview}
+                disabled={!selectedFile || isLoading}
+                className="w-1/2 bg-gray-600 text-white py-2 px-4 rounded-md
+                  hover:bg-gray-700 focus:outline-none focus:ring-2
+                  focus:ring-gray-500 focus:ring-offset-2 transition-colors
+                  font-medium disabled:bg-gray-300"
+              >
+                Preview
+              </button>
+              <button
+                onClick={handleUpload}
+                disabled={!selectedFile || isLoading}
+                className="w-1/2 bg-blue-600 text-white py-2 px-4 rounded-md
+                  hover:bg-blue-700 focus:outline-none focus:ring-2
+                  focus:ring-blue-500 focus:ring-offset-2 transition-colors
+                  font-medium disabled:bg-blue-300"
+              >
+                {isLoading ? "Processing..." : "Upload"}
+              </button>
+            </div>
           </div>
         </Card>
 
@@ -83,27 +208,78 @@ export default function FacultyMatrixUpload() {
           <div className="flex justify-center py-12">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
           </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {schedules.map((schedule, index) => (
-              <Card key={index}>
-                <div className="space-y-2">
-                  <h3 className="font-medium text-gray-900">
-                    {schedule.subject_code}
-                  </h3>
-                  <div className="text-sm text-gray-600 space-y-1">
-                    <p>Semester: {schedule.semester}</p>
-                    <p>Division: {schedule.division}</p>
-                    <p>Day: {schedule.day}</p>
-                    <p>Time Slot: {schedule.time_slot}</p>
-                    <p>Type: {schedule.is_lab ? "Lab" : "Lecture"}</p>
-                    <p>Faculty: {schedule.faculty_code}</p>
+        ) : activeTable ? (
+          <Card>
+            <div className="overflow-x-auto">
+              <table className="w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  <tr>
+                    {Object.keys(activeTable[0] || {}).map((header) => (
+                      <th
+                        key={header}
+                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        {header}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {activeTable.map((row, index) => (
+                    <tr key={index}>
+                      {Object.values(row).map((value: any, cellIndex) => (
+                        <td
+                          key={cellIndex}
+                          className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                        >
+                          {value?.toString()}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Card>
+        ) : processedData ? (
+          <div className="space-y-8">
+            {Object.entries(processedData).map(([classKey, data]) => (
+              <Card key={classKey}>
+                <div className="p-6">
+                  <h2 className="text-xl font-bold mb-4">
+                    Semester {classKey[0]} Division {classKey.slice(1)}
+                  </h2>
+                  <div className="overflow-x-auto">
+                    <table className="w-full">
+                      <thead>
+                        <tr className="bg-gray-50">
+                          <th className="px-4 py-2 text-left">Subject</th>
+                          <th className="px-4 py-2 text-left">Type</th>
+                          <th className="px-4 py-2 text-left">Faculty</th>
+                          <th className="px-4 py-2 text-left">Batch</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {data.subjects.map((subject, idx) => (
+                          <tr key={idx} className="border-t">
+                            <td className="px-4 py-2">
+                              {subject.subject_code}
+                            </td>
+                            <td className="px-4 py-2">{subject.type}</td>
+                            <td className="px-4 py-2">
+                              {subject.faculty_code}
+                            </td>
+                            <td className="px-4 py-2">{subject.batch}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </Card>
             ))}
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   );

@@ -1,9 +1,10 @@
 import os
+import requests #type: ignore
 import openpyxl #type: ignore
 import pandas as pd #type: ignore
 from flask_cors import CORS #type: ignore
-from flask import Flask, request, jsonify #type: ignore
 from werkzeug.utils import secure_filename ##type: ignore
+from flask import Flask, request, jsonify, make_response #type: ignore
 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'xlsx', 'xls'}
@@ -19,148 +20,7 @@ CORS(app, resources={
 })
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-def process_single_sheet(wb, sheet_name):
-    sheet = wb[sheet_name]
-    data = []
-    for row in sheet.iter_rows(values_only=True):
-        data.append(row)
-    
-    df = pd.DataFrame(data)
-    if df.empty:
-        return pd.DataFrame()
-    
-    header_row_index = 1
-    for idx, row in df.iterrows():
-        if row.notna().any():
-            header_row_index = idx
-            break
-    
-    df.columns = df.iloc[header_row_index]
-    df = df.iloc[header_row_index + 1:]
-    df = df.reset_index(drop=True)
-    
-    return df
-
-def get_normalized_day(day_value):
-    day_mapping = {
-        'MON': 'Monday', 'MONDAY': 'Monday',
-        'TUE': 'Tuesday', 'TUESDAY': 'Tuesday',
-        'WED': 'Wednesday', 'WEDNESDAY': 'Wednesday',
-        'THU': 'Thursday', 'THURSDAY': 'Thursday',
-        'FRI': 'Friday', 'FRIDAY': 'Friday',
-        'SAT': 'Saturday', 'SATURDAY': 'Saturday'
-    }
-    return day_mapping.get(day_value.strip().upper())
-
-def check_if_lab(row_idx, faculty_column, current_value):
-    prev_value = faculty_column.iloc[row_idx - 1] if row_idx > 0 else None
-    next_value = faculty_column.iloc[row_idx + 1] if row_idx < len(faculty_column) - 1 else None
-    return (prev_value == current_value) or (next_value == current_value)
-
-def create_schedule_entry(cell_value, time_slot, row_idx, faculty_column):
-    try:
-        is_lab = check_if_lab(row_idx, faculty_column, cell_value)
-        return {
-            'subject': cell_value,
-            'type': 'Lab' if is_lab else 'Lecture',
-            'time_slot': int(time_slot) if pd.notna(time_slot) else 0
-        }
-    except:
-        return None
-
-def create_faculty_schedule_dict(processed_df):
-    faculty_master = {}
-    faculty_names = []
-    
-    for col in processed_df.columns[2:]:
-        if pd.notna(col) and not str(col).isdigit():
-            faculty_names.append(col)
-    
-    for faculty in faculty_names:
-        faculty_master[faculty] = {day: [] for day in ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']}
-    
-    for faculty in faculty_names:
-        faculty_column = processed_df[faculty]
-        
-        for row_idx in range(len(faculty_column)):
-            try:
-                cell_value = str(faculty_column.iloc[row_idx]).strip()
-                if pd.isna(cell_value) or cell_value == '':
-                    continue
-                
-                day_value = str(processed_df.iloc[row_idx, 0]).strip().upper()
-                time_slot = processed_df.iloc[row_idx, 1]
-                
-                day = get_normalized_day(day_value)
-                if not day:
-                    continue
-                
-                schedule_entry = create_schedule_entry(
-                    cell_value, 
-                    time_slot, 
-                    row_idx, 
-                    faculty_column
-                )
-                
-                if schedule_entry:
-                    faculty_master[faculty][day].append(schedule_entry)
-                    
-            except IndexError:
-                continue
-    
-    return faculty_master
-
-def parse_subject_info(subject_str):
-    try:
-        parts = subject_str.strip().split()
-        if len(parts) < 2:
-            return None
-            
-        subject_code = parts[0]
-        class_info = ''.join(parts[1:])
-        
-        semester = int(class_info[0])
-        division = class_info[1]
-        batch = class_info[2] if len(class_info) > 2 else None
-        
-        return {
-            'code': subject_code,
-            'semester': semester,
-            'division': division,
-            'batch': batch
-        }
-    except:
-        return None
-
-def transform_to_required_format(faculty_schedules):
-    transformed_data = []
-    
-    for sheet, faculty_data in faculty_schedules.items():
-        for faculty_code, schedule in faculty_data.items():
-            for day, slots in schedule.items():
-                for slot in slots:
-                    try:
-                        subject_info = parse_subject_info(slot['subject'])
-                        if subject_info:
-                            entry = {
-                                "subject_code": subject_info['code'],
-                                "semester": subject_info['semester'],
-                                "division": subject_info['division'],
-                                "batch": subject_info['batch'],
-                                "is_lab": slot['type'] == 'Lab',
-                                "time_slot": slot['time_slot'],
-                                "day": day,
-                                "faculty_code": faculty_code
-                            }
-                            transformed_data.append(entry)
-                    except:
-                        continue
-    
-    return transformed_data
-
+# Faculty Matrix Processing Functions
 def process_faculty_data(file_path):
     def process_sheet(wb, sheet_name):
         sheet = wb[sheet_name]
@@ -521,106 +381,113 @@ def final_func(matrix_file, college="LDRP-ITR", department="CE"):
     
     return final_dict
 
-@app.route('/process-faculty-data/', methods=['POST'])
-def process_faculty_data():
-    try:
-        if 'file' not in request.files:
-            return jsonify({
-                'status': 'error',
-                'message': 'No file uploaded'
-            }), 400
+# Upload Functions
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-        file = request.files['file']
+# Route Functions
+@app.route('/faculty-matrix', methods=['POST'])
+def upload_faculty_matrix():
+    response = make_response()
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add("Access-Control-Allow-Headers", "*")
+    response.headers.add("Access-Control-Allow-Methods", "*")
+
+    if 'facultyMatrix' not in request.files:
+        return jsonify({'message': 'No file uploaded'}), 400
+        
+    file = request.files['facultyMatrix']
+    if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], 'faculty_matrix.xlsx')
         file.save(filepath)
-        wb = openpyxl.load_workbook(filepath)
         
-        processed_data = {}
-        for sheet_name in wb.sheetnames:
-            processed_df = process_single_sheet(wb, sheet_name)
-            faculty_schedule = create_faculty_schedule_dict(processed_df)
-            processed_data[sheet_name] = faculty_schedule
-
-        transformed_data = transform_to_required_format(processed_data)
+        # Send to Node.js
+        files = {'facultyMatrix': open(filepath, 'rb')}
+        nodejs_response = requests.post('http://localhost:4000/api/upload/faculty-matrix', files=files)
         
-        return jsonify({
-            'status': 'success',
-            'data': transformed_data
-        })
-
-    except Exception as e:
-        return jsonify({
-            'status': 'error',
-            'message': str(e)
-        }), 500
-
-    finally:
-        if os.path.exists(filepath):
-            os.remove(filepath)
-
-@app.route('/process-faculty-matrix/', methods=['POST'])
-def process_faculty_matrix():
-    try:
-        # Validate file presence
-        if 'matrix_file' not in request.files or 'abbreviations_file' not in request.files:
-            return jsonify({
-                'status': 'error',
-                'message': 'Both matrix file and abbreviations file are required'
-            }), 400
-
-        matrix_file = request.files['matrix_file']
-        abbreviations_file = request.files['abbreviations_file']
-
-        # Validate file types
-        if not (allowed_file(matrix_file.filename) and allowed_file(abbreviations_file.filename)):
-            return jsonify({
-                'status': 'error',
-                'message': 'Invalid file format. Only .xlsx and .xls files are allowed'
-            }), 400
-
-        # Create unique filenames
-        matrix_filename = secure_filename(f"matrix_{matrix_file.filename}")
-        abbrev_filename = secure_filename(f"abbrev_{abbreviations_file.filename}")
-        
-        matrix_filepath = os.path.join(app.config['UPLOAD_FOLDER'], matrix_filename)
-        abbrev_filepath = os.path.join(app.config['UPLOAD_FOLDER'], abbrev_filename)
-
-        # Save files
-        matrix_file.save(matrix_filepath)
-        abbreviations_file.save(abbrev_filepath)
-
-        # Process files
-        faculty_abbreviations = pd.read_excel(abbrev_filepath, sheet_name="Faculty Abbrevations")
-        subject_abbreviations = pd.read_excel(abbrev_filepath, sheet_name="Subject Abbrevations")
-
-        # Generate final dictionary
-        final_dict = final_func(matrix_filepath, college="LDRP-ITR", department="CE")
-
-        return jsonify({
-            'status': 'success',
-            'data': final_dict,
-            'message': 'Files processed successfully'
-        })
-
-    except pd.errors.EmptyDataError:
-        return jsonify({
-            'status': 'error',
-            'message': 'One of the uploaded files is empty'
-        }), 400
+        results = final_func(filepath, college="LDRP-ITR", department="CE")
+        return jsonify(results)
     
-    except Exception as e:
-        return jsonify({
-            'status': 'error',
-            'message': f'Error processing files: {str(e)}'
-        }), 500
+    return jsonify({'message': 'Invalid file format'}), 400
 
-    finally:
-        # Clean up files
-        for filepath in [matrix_filepath, abbrev_filepath]:
-            if os.path.exists(filepath):
-                os.remove(filepath)
+@app.route('/student-data/', methods=['POST'])
+def upload_student_data():
+    try:
+        if 'studentData' not in request.files:
+            return jsonify({'message': 'No file uploaded'}), 400
+            
+        file = request.files['studentData']
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], 'student_data.xlsx')
+            file.save(filepath)
+            
+            with open(filepath, 'rb') as f:
+                files = {
+                    'studentData': ('student_data.xlsx', f, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+                }
+                nodejs_response = requests.post('http://localhost:4000/api/upload/student-data', files=files)
+                
+                if nodejs_response.ok:
+                    return jsonify(nodejs_response.json())
+                return jsonify({'message': 'Node.js processing failed', 'details': nodejs_response.text}), nodejs_response.status_code
+        
+        return jsonify({'message': 'Invalid file format'}), 400
+        
+    except Exception as e:
+        return jsonify({'message': f'Processing error: {str(e)}'}), 500
+
+@app.route('/faculty-data/', methods=['POST'])
+def upload_faculty_data():
+    if 'facultyData' not in request.files:
+        return jsonify({'message': 'No file uploaded'}), 400
+        
+    file = request.files['facultyData']
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], 'faculty_data.xlsx')
+        file.save(filepath)
+        
+        # Send to Node.js
+        files = {'facultyData': open(filepath, 'rb')}
+        nodejs_response = requests.post('http://localhost:4000/faculty-data', files=files)
+        
+        return jsonify({'message': 'Faculty data file uploaded successfully'})
+    
+    return jsonify({'message': 'Invalid file format'}), 400
+
+@app.route('/subject-data/', methods=['POST'])
+def upload_subject_data():
+    try:
+        if 'subjectData' not in request.files:
+            return jsonify({'message': 'No file uploaded'}), 400
+            
+        file = request.files['subjectData']
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], 'subject_data.xlsx')
+            file.save(filepath)
+            
+            print(f"File saved at: {filepath}")
+            print(f"File size: {os.path.getsize(filepath)} bytes")
+            
+            with open(filepath, 'rb') as f:
+                files = {
+                    'subjectData': ('subject_data.xlsx', f, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+                }
+                print("Sending to Node.js...")
+                nodejs_response = requests.post('http://localhost:4000/api/upload/subject-data', files=files)
+                print(f"Node.js Response Status: {nodejs_response.status_code}")
+                print(f"Node.js Response Content: {nodejs_response.text}")
+                
+                return jsonify(nodejs_response.json())
+        
+        return jsonify({'message': 'Invalid file format'}), 400
+        
+    except Exception as e:
+        print(f"Error: {str(e)}")
+        return jsonify({'message': f'Processing error: {str(e)}'}), 500
 
 if __name__ == '__main__':
     app.run(port=8000, debug=True)

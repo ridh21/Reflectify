@@ -2,15 +2,20 @@ import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
+import { AuthProvider } from "@/context/AuthContext";
+import page_icon from "/public/review.png";
 
 const googleSans = DM_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   display: "swap",
-  variable: "--font-google-sans",
+  variable: "--font-dm-sans",
 });
 
 export const metadata: Metadata = {
+  icons: {
+    icon: page_icon.src,
+  },
   title: "Reflectify - Faculty Schedule Management",
   description: "Efficiently manage and organize faculty schedules",
   keywords: ["schedule", "faculty", "management", "education"],
@@ -24,17 +29,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${googleSans.variable} font-sans antialiased min-h-screen flex flex-col bg-background`}
+        suppressHydrationWarning
+        className={`${googleSans.variable} font-sans antialiased flex flex-col bg-background`}
       >
-        <Header />
-        <main className="flex-1">{children}</main>
-        <footer className="border-t bg-card">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-center">
-            <p className="text-sm text-muted-foreground">
-              © 2024 Reflectify. All rights reserved.
-            </p>
-          </div>
-        </footer>
+        <AuthProvider>
+          <Header />
+          <main className="m-0 p-0">{children}</main>
+        </AuthProvider>
       </body>
     </html>
   );
