@@ -1,0 +1,185 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  USER
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String?
+  name      String
+  picture   String?
+  googleId  String?  @unique
+  role      UserRole @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model OTP {
+  id        String   @id @default(uuid())
+  email     String
+  otp       String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model Departments {
+  id        String      @id @default(cuid())
+  name      String
+  code      String      @unique
+  divisions Divisions[]
+  subjects  Subjects[]
+  students  Students[]
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  Semesters Semesters[]
+}
+
+model Semesters {
+  id                 String               @id @default(cuid())
+  name               String
+  department_id      String
+  department         Departments          @relation(fields: [department_id], references: [id])
+  divisions          Divisions[]
+  subjects           Subjects[]
+  subjectAllocations SubjectAllocations[]
+  students           Students[]
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+}
+
+model Divisions {
+  id                 String               @id @default(cuid())
+  name               String
+  semester_id        String
+  department_id      String
+  semester           Semesters            @relation(fields: [semester_id], references: [id])
+  department         Departments          @relation(fields: [department_id], references: [id])
+  students           Students[]
+  feedbackForms      FeedbackForms[]
+  feedbackAnalytics  FeedbackAnalytics[]
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  SubjectAllocations SubjectAllocations[]
+}
+
+model Subjects {
+  id                 String               @id @default(cuid())
+  name               String
+  code               String               @unique
+  department_id      String
+  semester_id        String
+  department         Departments          @relation(fields: [department_id], references: [id])
+  semester           Semesters            @relation(fields: [semester_id], references: [id])
+  subjectAllocations SubjectAllocations[]
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+}
+
+model SubjectAllocations {
+  id                String              @id @default(cuid())
+  subject_id        String
+  faculty_id        String
+  division_id       String
+  semester_id       String
+  subject           Subjects            @relation(fields: [subject_id], references: [id])
+  faculty           Faculties           @relation(fields: [faculty_id], references: [id])
+  division          Divisions           @relation(fields: [division_id], references: [id])
+  semester          Semesters           @relation(fields: [semester_id], references: [id])
+  feedbackForms     FeedbackForms[]
+  feedbackAnalytics FeedbackAnalytics[]
+  studentResponses  StudentResponses[]
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+}
+
+model Students {
+  id               String             @id @default(cuid())
+  name             String
+  email            String             @unique
+  roll_no          String             @unique
+  academic_year    String
+  department_id    String
+  semester_id      String
+  division_id      String
+  department       Departments        @relation(fields: [department_id], references: [id])
+  semester         Semesters          @relation(fields: [semester_id], references: [id])
+  division         Divisions          @relation(fields: [division_id], references: [id])
+  studentResponses StudentResponses[]
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+}
+
+model FeedbackForms {
+  id                    String              @id @default(cuid())
+  title                 String
+  division_id           String
+  subject_allocation_id String
+  division              Divisions           @relation(fields: [division_id], references: [id])
+  subjectAllocation     SubjectAllocations  @relation(fields: [subject_allocation_id], references: [id])
+  feedbackQuestions     FeedbackQuestions[]
+  studentResponses      StudentResponses[]
+  createdAt             DateTime            @default(now())
+  updatedAt             DateTime            @updatedAt
+}
+
+model FeedbackQuestions {
+  id               String             @id @default(cuid())
+  question         String
+  form_id          String
+  form             FeedbackForms      @relation(fields: [form_id], references: [id])
+  studentResponses StudentResponses[]
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+}
+
+model StudentResponses {
+  id                    String             @id @default(cuid())
+  response              Int
+  student_id            String
+  form_id               String
+  question_id           String
+  subject_allocation_id String
+  student               Students           @relation(fields: [student_id], references: [id])
+  form                  FeedbackForms      @relation(fields: [form_id], references: [id])
+  question              FeedbackQuestions  @relation(fields: [question_id], references: [id])
+  subjectAllocation     SubjectAllocations @relation(fields: [subject_allocation_id], references: [id])
+  createdAt             DateTime           @default(now())
+  updatedAt             DateTime           @updatedAt
+}
+
+model Faculties {
+  id                 String               @id @default(cuid())
+  name               String
+  email              String               @unique
+  abbreviation       String               @unique
+    department       Departments        @relation(fields: [department_id], references: [id])
+  subjectAllocations SubjectAllocations[]
+  feedbackAnalytics  FeedbackAnalytics[]
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+}
+
+model FeedbackAnalytics {
+  id                    String             @id @default(cuid())
+  average_rating        Float
+  total_responses       Int
+  subject_allocation_id String
+  division_id           String
+  faculty_id            String
+  subjectAllocation     SubjectAllocations @relation(fields: [subject_allocation_id], references: [id])
+  division              Divisions          @relation(fields: [division_id], references: [id])
+  faculty               Faculties          @relation(fields: [faculty_id], references: [id])
+  createdAt             DateTime           @default(now())
+  updatedAt             DateTime           @updatedAt
+}

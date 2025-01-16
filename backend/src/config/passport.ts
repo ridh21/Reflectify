@@ -2,17 +2,38 @@ import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { prisma } from '../lib/prisma';
 import { Profile } from 'passport-google-oauth20';
+import { Admin } from '@prisma/client';
 
-passport.serializeUser((user: any, done) => {
-  done(null, user.id || user._id);
+declare global {
+  namespace Express {
+    interface User extends Admin {
+      role: string;
+      picture: string;
+      googleId: string;
+    }
+  }
+}
+
+passport.serializeUser((user: Express.User, done) => {
+  done(null, user.id);
 });
 
 passport.deserializeUser(async (id: string, done) => {
   try {
-    const user = await prisma.user.findUnique({
+    const admin = await prisma.admin.findUnique({
       where: { id },
     });
-    done(null, user);
+    if (admin) {
+      const user: Express.User = {
+        ...admin,
+        role: 'ADMIN',
+        picture: '',
+        googleId: id
+      };
+      done(null, user);
+    } else {
+      done(null, null);
+    }
   } catch (error) {
     done(error);
   }
@@ -31,21 +52,26 @@ passport.use(
           throw new Error('Insufficient profile information from Google');
         }
 
-        const user = await prisma.user.upsert({
+        const admin = await prisma.admin.upsert({
           where: { email: profile.emails[0].value },
           create: {
             email: profile.emails[0].value,
             name: profile.displayName || profile.emails[0].value.split('@')[0],
-            role: 'USER',
+            designation: 'Google Auth User',
             password: '',
-            picture: profile.photos?.[0]?.value || '',
-            googleId: profile.id,
+            isSuper: false
           },
           update: {
             name: profile.displayName || profile.emails[0].value.split('@')[0],
-            picture: profile.photos?.[0]?.value || '',
           },
         });
+
+        const user: Express.User = {
+          ...admin,
+          role: 'ADMIN',
+          picture: profile.photos?.[0]?.value || '',
+          googleId: profile.id
+        };
 
         done(null, user);
       } catch (error) {

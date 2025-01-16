@@ -28,6 +28,17 @@ enum FormStatus {
   CLOSED
 }
 
+model OTP {
+  id        String   @id @default(uuid())
+  email     String
+  otp       String
+  expiresAt DateTime @map("expires_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("otps")
+}
+
 model College {
   id            String       @id @default(uuid())
   name          String

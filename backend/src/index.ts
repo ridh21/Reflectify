@@ -4,6 +4,8 @@ import passport from './config/passport';
 import otpRoutes from './routes/otp';
 import authRoutes from './routes/oauth';
 import uploadRouter from './routes/upload';
+import uploadStaticDataRouter from './routes/uploadstaticdata';
+// import cleanDatabaseRouter from './routes/cleanDatabase';
 import cors from 'cors';
 
 const app = express();
@@ -47,6 +49,9 @@ app.use(passport.session());
 app.use('/api/otp', otpRoutes);
 app.use('/auth', authRoutes);
 app.use('/api/upload', uploadRouter);
+app.use('/api/upload-data', uploadStaticDataRouter);
+
+// app.use('/api/clean-database', cleanDatabaseRouter);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {

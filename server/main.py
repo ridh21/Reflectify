@@ -404,7 +404,7 @@ def upload_faculty_matrix():
         
         # Send to Node.js
         files = {'facultyMatrix': open(filepath, 'rb')}
-        nodejs_response = requests.post('http://localhost:4000/api/upload/faculty-matrix', files=files)
+        nodejs_response = requests.post('http://localhost:4000/api/upload-data/faculty-matrix', files=files)
         
         results = final_func(filepath, college="LDRP-ITR", department="CE")
         return jsonify(results)
@@ -427,7 +427,7 @@ def upload_student_data():
                 files = {
                     'studentData': ('student_data.xlsx', f, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
                 }
-                nodejs_response = requests.post('http://localhost:4000/api/upload/student-data', files=files)
+                nodejs_response = requests.post('http://localhost:4000/api/upload-data/student-data', files=files)
                 
                 if nodejs_response.ok:
                     return jsonify(nodejs_response.json())
@@ -449,9 +449,8 @@ def upload_faculty_data():
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], 'faculty_data.xlsx')
         file.save(filepath)
         
-        # Send to Node.js
         files = {'facultyData': open(filepath, 'rb')}
-        nodejs_response = requests.post('http://localhost:4000/faculty-data', files=files)
+        nodejs_response = requests.post('http://localhost:4000/api/upload-data/faculty-data', files=files)
         
         return jsonify({'message': 'Faculty data file uploaded successfully'})
     
