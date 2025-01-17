@@ -269,4 +269,114 @@ router.post(
   }
 );
 
+interface SubjectData {
+  name: string;
+  abbreviation: string;
+  subjectCode: string;
+  type: 'MANDATORY' | 'ELECTIVE';
+  departmentId: string;
+  semesterId: string;
+}
+
+router.post(
+  '/subject-data',
+  upload.single('subjectData'),
+  async (req: Request, res: Response): Promise<void> => {
+    try {
+      if (!req.file) {
+        res.status(400).json({ message: 'No file uploaded' });
+        return;
+      }
+
+      const workbook = new ExcelJS.Workbook();
+      await workbook.xlsx.readFile(req.file.path);
+      const worksheet = workbook.getWorksheet(1);
+
+      if (!worksheet) {
+        res.status(400).json({ message: 'Invalid worksheet' });
+        return;
+      }
+
+      const subjects: SubjectData[] = [];
+
+      for (let rowNumber = 2; rowNumber <= worksheet.rowCount; rowNumber++) {
+        const row = worksheet.getRow(rowNumber);
+        const departmentData = row.getCell(7).value?.toString();
+        const semesterData = row.getCell(5).value?.toString();
+
+        if (!departmentData || !semesterData) {
+          res.status(400).json({
+            message: 'Invalid department or semester data',
+            row: rowNumber,
+          });
+          return;
+        }
+
+        const department = await prisma.department.upsert({
+          where: { id: departmentData },
+          create: {
+            id: departmentData,
+            name: `Department of ${departmentData}`,
+            abbreviation: departmentData,
+            hodName: `HOD of ${departmentData}`,
+            hodEmail: `hod.${departmentData.toLowerCase()}@ldrp.ac.in`,
+            collegeId: 'LDRP-ITR',
+          },
+          update: {},
+        });
+
+        const semester = await prisma.semester.upsert({
+          where: { id: semesterData },
+          create: {
+            id: semesterData,
+            departmentId: department.id,
+            semesterNumber: parseInt(semesterData),
+            academicYear: new Date().getFullYear().toString(),
+          },
+          update: {},
+        });
+
+        const subjectData: SubjectData = {
+          name: row.getCell(2).value?.toString() || '',
+          abbreviation: row.getCell(3).value?.toString() || '',
+          subjectCode: row.getCell(4).value?.toString() || '',
+          type:
+            row.getCell(6).value?.toString()?.toUpperCase() === 'YES'
+              ? 'ELECTIVE'
+              : 'MANDATORY',
+          departmentId: department.id,
+          semesterId: semester.id,
+        };
+
+        const result = await prisma.subject.upsert({
+          where: {
+            departmentId_subjectCode: {
+              departmentId: subjectData.departmentId,
+              subjectCode: subjectData.subjectCode,
+            },
+          },
+          create: subjectData,
+          update: subjectData,
+        });
+
+        subjects.push(subjectData);
+      }
+
+      // Clean up the uploaded file
+      fs.unlinkSync(req.file.path);
+
+      res.status(200).json({
+        message: 'Subjects data uploaded successfully',
+        count: subjects.length,
+      });
+    } catch (error) {
+      console.error('Error:', error);
+      res.status(500).json({
+        message: 'Error processing subject data',
+        error: error instanceof Error ? error.message : 'Unknown error',
+      });
+    }
+  }
+);
+
 export default router;

@@ -476,7 +476,7 @@ def upload_subject_data():
                     'subjectData': ('subject_data.xlsx', f, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
                 }
                 print("Sending to Node.js...")
-                nodejs_response = requests.post('http://localhost:4000/api/upload/subject-data', files=files)
+                nodejs_response = requests.post('http://localhost:4000/api/upload-data/subject-data', files=files)
                 print(f"Node.js Response Status: {nodejs_response.status_code}")
                 print(f"Node.js Response Content: {nodejs_response.text}")
                 

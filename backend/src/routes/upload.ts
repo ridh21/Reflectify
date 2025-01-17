@@ -146,24 +146,22 @@ router.post(
               for (const [subjectCode, subjectData] of Object.entries(
                 divData
               )) {
-                const subject = await prisma.subject.upsert({
-                  where: {
-                    departmentId_subjectCode: {
-                      departmentId: department.id,
-                      subjectCode: subjectCode,
-                    },
-                  },
-                  create: {
-                    name: subjectCode,
-                    abbreviation: subjectCode,
-                    subjectCode: subjectCode,
-                    departmentId: department.id,
-                    semesterId: semester.id,
-                  },
-                  update: {},
+                let subject = await prisma.subject.findFirst({
+                  where: { abbreviation: subjectCode },
                 });
 
-                // Handle Lectures
+                if (!subject) {
+                  subject = await prisma.subject.create({
+                    data: {
+                      name: subjectCode,
+                      abbreviation: subjectCode,
+                      subjectCode: subjectCode,
+                      departmentId: department.id,
+                      semesterId: semester.id,
+                    },
+                  });
+                }
+
                 if (subjectData.lectures?.designated_faculty) {
                   let faculty = await prisma.faculty.findFirst({
                     where: {
@@ -176,13 +174,14 @@ router.post(
                       data: {
                         name: subjectData.lectures.designated_faculty,
                         abbreviation: subjectData.lectures.designated_faculty,
-                        email: `${subjectData.lectures.designated_faculty.toLowerCase()}@example.com`,
-                        designation: 'Professor',
-                        seatingLocation: '',
+                        email: `${subjectData.lectures.designated_faculty.toLowerCase()}@ldrp.ac.in`,
+                        designation: 'Assistant Professor',
+                        seatingLocation: `${department.id} Department`,
                         joiningDate: new Date(),
                         departmentId: department.id,
                       },
                     });
+                    console.log(`✓ Created faculty: ${faculty.name}`);
                   }
 
                   await prisma.subjectAllocation.upsert({
@@ -203,57 +202,57 @@ router.post(
                       lectureType: LectureType.LECTURE,
                       academicYear: new Date().getFullYear().toString(),
                     },
-                    update: {}, // Keep existing data if allocation already exists
+                    update: {},
                   });
+                }
 
-                  // Handle Labs
-                  if (subjectData.labs) {
-                    for (const [batch, labData] of Object.entries(
-                      subjectData.labs
-                    )) {
-                      const labFacultyAbbreviation = labData.designated_faculty;
-                      if (labFacultyAbbreviation) {
-                        let labFaculty = await prisma.faculty.findFirst({
-                          where: { abbreviation: labFacultyAbbreviation },
-                        });
+                if (subjectData.labs) {
+                  for (const [batch, labData] of Object.entries(
+                    subjectData.labs
+                  )) {
+                    if (labData.designated_faculty) {
+                      let labFaculty = await prisma.faculty.findFirst({
+                        where: { abbreviation: labData.designated_faculty },
+                      });
 
-                        if (!labFaculty) {
-                          labFaculty = await prisma.faculty.create({
-                            data: {
-                              name: labFacultyAbbreviation,
-                              abbreviation: labFacultyAbbreviation,
-                              email: `${labFacultyAbbreviation.toLowerCase()}@example.com`,
-                              designation: 'Professor',
-                              seatingLocation: '',
-                              joiningDate: new Date(),
-                              departmentId: department.id,
-                            },
-                          });
-                        }
-
-                        await prisma.subjectAllocation.upsert({
-                          where: {
-                            facultyId_subjectId_divisionId_semesterId_lectureType:
-                              {
-                                facultyId: labFaculty.id,
-                                subjectId: subject.id,
-                                divisionId: division.id,
-                                semesterId: semester.id,
-                                lectureType: LectureType.LAB,
-                              },
+                      if (!labFaculty) {
+                        labFaculty = await prisma.faculty.create({
+                          data: {
+                            name: labData.designated_faculty,
+                            abbreviation: labData.designated_faculty,
+                            email: `${labData.designated_faculty.toLowerCase()}@ldrp.ac.in`,
+                            designation: 'Assistant Professor',
+                            seatingLocation: `${department.id} Department`,
+                            joiningDate: new Date(),
+                            departmentId: department.id,
                           },
-                          create: {
-                            facultyId: labFaculty.id,
-                            subjectId: subject.id,
-                            divisionId: division.id,
-                            semesterId: semester.id,
-                            lectureType: LectureType.LAB,
-                            // batch: batch,
-                            academicYear: new Date().getFullYear().toString(),
-                          },
-                          update: {}, // Keep existing data if allocation already exists
                         });
+                        console.log(
+                          `✓ Created lab faculty: ${labFaculty.name}`
+                        );
                       }
+
+                      await prisma.subjectAllocation.upsert({
+                        where: {
+                          facultyId_subjectId_divisionId_semesterId_lectureType:
+                            {
+                              facultyId: labFaculty.id,
+                              subjectId: subject.id,
+                              divisionId: division.id,
+                              semesterId: semester.id,
+                              lectureType: LectureType.LAB,
+                            },
+                        },
+                        create: {
+                          facultyId: labFaculty.id,
+                          subjectId: subject.id,
+                          divisionId: division.id,
+                          semesterId: semester.id,
+                          lectureType: LectureType.LAB,
+                          academicYear: new Date().getFullYear().toString(),
+                        },
+                        update: {},
+                      });
                     }
                   }
                 }
@@ -261,11 +260,11 @@ router.post(
             }
           }
         }
-
-        res
-          .status(200)
-          .json({ message: 'Faculty matrix processed successfully' });
       }
+
+      res
+        .status(200)
+        .json({ message: 'Faculty matrix processed successfully' });
     } catch (error) {
       console.error('Error processing faculty matrix:', error);
       res.status(500).json({

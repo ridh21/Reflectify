@@ -11,8 +11,8 @@ interface ClassSchedule {
     subjects: {
       subject_code: string;
       type: "Lecture" | "Lab";
-      faculty_code: string;
-      batch: string;
+      faculty: string;
+      batch?: string;
     }[];
   };
 }
@@ -70,18 +70,11 @@ export default function FacultyMatrixUpload() {
       return;
     }
 
-    console.log("Selected file:", {
-      name: selectedFile.name,
-      type: selectedFile.type,
-      size: selectedFile.size,
-    });
-
     const formData = new FormData();
     formData.append("facultyMatrix", selectedFile);
 
     setIsLoading(true);
     try {
-      console.log("Sending request to server...");
       const response = await fetch(
         "http://localhost:4000/api/upload/faculty-matrix",
         {
@@ -89,47 +82,62 @@ export default function FacultyMatrixUpload() {
           body: formData,
         }
       );
-      console.log("Response received:", response.status);
 
       const results = await response.json();
 
       if (response.ok) {
         toast.success("File processed successfully");
         const newProcessedData: ClassSchedule = {};
-        const college = Object.keys(results)[0];
-        const department = Object.keys(results[college])[0];
 
-        Object.entries(results[college][department]).forEach(
-          ([semester, divisions]) => {
-            Object.entries(divisions as any).forEach(([division, subjects]) => {
-              const classKey = `${semester}${division}`;
-              if (!newProcessedData[classKey]) {
-                newProcessedData[classKey] = { subjects: [] };
-              }
+        // Process the hierarchical data
+        Object.entries(results).forEach(
+          ([college, collegeData]: [string, any]) => {
+            Object.entries(collegeData).forEach(
+              ([department, departmentData]: [string, any]) => {
+                Object.entries(departmentData).forEach(
+                  ([semester, semesterData]: [string, any]) => {
+                    Object.entries(semesterData).forEach(
+                      ([division, divisionData]: [string, any]) => {
+                        const classKey = `${semester}${division}`;
+                        if (!newProcessedData[classKey]) {
+                          newProcessedData[classKey] = { subjects: [] };
+                        }
 
-              Object.entries(subjects as any).forEach(
-                ([subject, details]: [string, any]) => {
-                  if (details.lectures.designated_faculty) {
-                    newProcessedData[classKey].subjects.push({
-                      subject_code: subject,
-                      type: "Lecture",
-                      faculty_code: details.lectures.designated_faculty,
-                      batch: "-",
-                    });
+                        Object.entries(divisionData).forEach(
+                          ([subject, subjectData]: [string, any]) => {
+                            // Handle Lectures
+                            if (subjectData?.lectures?.designated_faculty) {
+                              newProcessedData[classKey].subjects.push({
+                                subject_code: subject,
+                                type: "Lecture",
+                                faculty:
+                                  subjectData.lectures.designated_faculty,
+                              });
+                            }
+
+                            // Handle Labs
+                            if (subjectData?.labs) {
+                              Object.entries(subjectData.labs).forEach(
+                                ([batch, labData]: [string, any]) => {
+                                  if (labData?.designated_faculty) {
+                                    newProcessedData[classKey].subjects.push({
+                                      subject_code: subject,
+                                      type: "Lab",
+                                      batch: batch,
+                                      faculty: labData.designated_faculty,
+                                    });
+                                  }
+                                }
+                              );
+                            }
+                          }
+                        );
+                      }
+                    );
                   }
-                  Object.entries(details.labs || {}).forEach(
-                    ([batch, lab]: [string, any]) => {
-                      newProcessedData[classKey].subjects.push({
-                        subject_code: subject,
-                        type: "Lab",
-                        faculty_code: lab.designated_faculty,
-                        batch,
-                      });
-                    }
-                  );
-                }
-              );
-            });
+                );
+              }
+            );
           }
         );
 
@@ -266,10 +274,10 @@ export default function FacultyMatrixUpload() {
                               {subject.subject_code}
                             </td>
                             <td className="px-4 py-2">{subject.type}</td>
+                            <td className="px-4 py-2">{subject.faculty}</td>
                             <td className="px-4 py-2">
-                              {subject.faculty_code}
+                              {subject.batch || "-"}
                             </td>
-                            <td className="px-4 py-2">{subject.batch}</td>
                           </tr>
                         ))}
                       </tbody>
