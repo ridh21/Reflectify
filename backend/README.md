@@ -33,10 +33,6 @@ curl -X POST http://localhost:4000/api/admin/login \
 }'
 ```
 
-**Copy**
-
-**Execute**
-
 ---
 
 ## Create Regular Admin (requires Super Admin token)

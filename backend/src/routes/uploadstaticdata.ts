@@ -3,6 +3,7 @@ import multer, { Multer, StorageEngine } from 'multer';
 import { PrismaClient } from '@prisma/client';
 import ExcelJS from 'exceljs';
 import fs from 'fs';
+import { isAuthenticated, isAdmin } from '../middleware/auth';
 
 const router: Router = express.Router();
 const prisma: PrismaClient = new PrismaClient();
@@ -45,6 +46,8 @@ const upload: Multer = multer({
 
 router.post(
   '/student-data',
+  isAuthenticated,
+  isAdmin,
   upload.single('studentData'),
   async (req: Request, res: Response): Promise<void> => {
     try {
@@ -171,6 +174,8 @@ router.post(
 
 router.post(
   '/faculty-data',
+  isAuthenticated,
+  isAdmin,
   upload.single('facultyData'),
   async (req: Request, res: Response): Promise<void> => {
     try {
@@ -280,6 +285,8 @@ interface SubjectData {
 
 router.post(
   '/subject-data',
+  isAuthenticated,
+  isAdmin,
   upload.single('subjectData'),
   async (req: Request, res: Response): Promise<void> => {
     try {

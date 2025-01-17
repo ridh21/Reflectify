@@ -9,6 +9,7 @@ declare global {
         id: string;
         email: string;
         isSuper: boolean;
+        isAdmin?: boolean;
       }
     }
   }
@@ -49,6 +50,18 @@ export const isSuperAdmin = (
 ): void => {
   if (!req.User?.isSuper) {
     res.status(403).json({ message: 'Super admin access required' });
+    return;
+  }
+  next();
+};
+
+export const isAdmin = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): void => {
+  if (!req.User?.isAdmin) {
+    res.status(403).json({ message: 'Admin access required' });
     return;
   }
   next();
