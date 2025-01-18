@@ -3,6 +3,7 @@ import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { AuthProvider } from "@/context/AuthContext";
+import { Toaster } from "react-hot-toast";
 import page_icon from "/public/review.png";
 
 const googleSans = DM_Sans({
@@ -33,6 +34,23 @@ export default function RootLayout({
         className={`${googleSans.variable} font-sans antialiased flex flex-col bg-background`}
       >
         <AuthProvider>
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              success: {
+                style: {
+                  background: "#ffffff",
+                  color: "green",
+                },
+              },
+              error: {
+                style: {
+                  background: "#ef4444",
+                  color: "white",
+                },
+              },
+            }}
+          />
           <Header />
           <main className="m-0 p-0">{children}</main>
         </AuthProvider>

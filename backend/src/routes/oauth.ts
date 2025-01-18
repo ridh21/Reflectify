@@ -17,25 +17,14 @@ router.get(
 );
 
 router.get('/status', (req, res) => {
-  if (req.isAuthenticated() && req.user) {
-    const user = req.user as any;
-    res.json({
-      user: {
-        name: user.name,
-        picture: user.picture,
-        email: user.email,
-      },
-    });
-  } else {
-    res.json({ user: null });
-  }
+  res.json({ authenticated: false });
 });
 
 // router.get('/status', (req, res) => {
 //   console.log('Session:', req.session);
 //   console.log('User:', req.user);
 //   if (req.isAuthenticated()) {
-//     res.json({ 
+//     res.json({
 //       user: {
 //         name: req.user.name,
 //         picture: req.user.picture,
@@ -46,7 +35,6 @@ router.get('/status', (req, res) => {
 //     res.json({ user: null });
 //   }
 // });
-
 
 router.get('/logout', (req, res) => {
   req.logout(() => {

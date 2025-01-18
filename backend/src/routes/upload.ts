@@ -1,6 +1,6 @@
 import express, { Router, Request, Response } from 'express';
 import multer, { Multer, StorageEngine } from 'multer';
-import { PrismaClient, LectureType } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 import fs from 'fs';
 import FormData from 'form-data';
 import fetch from 'node-fetch';
@@ -191,7 +191,7 @@ router.post(
                         subjectId: subject.id,
                         divisionId: division.id,
                         semesterId: semester.id,
-                        lectureType: LectureType.LECTURE,
+                        lectureType: 'LECTURE',
                       },
                     },
                     create: {
@@ -199,7 +199,7 @@ router.post(
                       subjectId: subject.id,
                       divisionId: division.id,
                       semesterId: semester.id,
-                      lectureType: LectureType.LECTURE,
+                      lectureType: 'LECTURE',
                       academicYear: new Date().getFullYear().toString(),
                     },
                     update: {},
@@ -240,7 +240,7 @@ router.post(
                               subjectId: subject.id,
                               divisionId: division.id,
                               semesterId: semester.id,
-                              lectureType: LectureType.LAB,
+                              lectureType: 'LAB',
                             },
                         },
                         create: {
@@ -248,7 +248,7 @@ router.post(
                           subjectId: subject.id,
                           divisionId: division.id,
                           semesterId: semester.id,
-                          lectureType: LectureType.LAB,
+                          lectureType: 'LAB',
                           academicYear: new Date().getFullYear().toString(),
                         },
                         update: {},

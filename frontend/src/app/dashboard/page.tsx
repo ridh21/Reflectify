@@ -3,129 +3,191 @@
 import { Card } from "@/components/ui/Card";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
+import {
+  AcademicCapIcon,
+  UserGroupIcon,
+  BuildingOfficeIcon,
+  ViewColumnsIcon,
+  BookOpenIcon,
+  ClipboardDocumentListIcon,
+  UserPlusIcon,
+  UserIcon,
+  DocumentPlusIcon,
+  BoltIcon,
+} from "@heroicons/react/24/outline";
 
-interface User {
-  name: string;
-  email: string;
-  picture: string;
+interface DashboardStats {
+  facultyCount: number;
+  subjectCount: number;
+  studentCount: number;
+  departmentCount: number;
+  divisionCount: number;
+  feedbackCount: number;
 }
 
 export default function Dashboard() {
   const router = useRouter();
-  const [user, setUser] = useState<User | null>(null);
+  const [stats, setStats] = useState<DashboardStats | null>(null);
+
+
 
   useEffect(() => {
-    const checkAuth = async () => {
-      const response = await fetch("http://localhost:4000/auth/status", {
-        credentials: "include",
-      });
+    const fetchStats = async () => {
+      const response = await fetch("http://localhost:4000/api/dashboard/stats");
       const data = await response.json();
-
-      if (data.user) {
-        setUser(data.user);
-      } else {
-        router.push("/login");
-      }
+      setStats(data);
     };
 
-    checkAuth();
-  }, [router]);
+    fetchStats();
+  }, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {user && (
-        <div className="absolute top-4 right-4 flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-md">
-          <Image
-            src={user.picture}
-            alt="Profile"
-            width={32}
-            height={32}
-            className="rounded-full"
-          />
-          <span className="font-medium">{user.name}</span>
-        </div>
-      )}
+    <div className="min-h-screen bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="space-y-8">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
+              Dashboard
+              <BoltIcon className="h-8 w-8 text-orange-500" />
+            </h1>
+            <p className="mt-2 text-sm text-gray-600">
+              Overview of system statistics
+            </p>
+          </div>
 
-      <div className="space-y-8">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-          <p className="mt-2 text-sm text-gray-600">
-            Overview of faculty schedules and matrix data
-          </p>
-        </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card
+              className="cursor-pointer bg-white border-2 border-orange-100 hover:border-orange-500 transition-all transform hover:-translate-y-1 shadow-md"
+              onClick={() => router.push("/faculty")}
+            >
+              <div className="flex items-center justify-between">
+                <div className="space-y-1">
+                  <p className="text-sm text-gray-600 font-medium">
+                    Total Faculty
+                  </p>
+                  <p className="text-3xl font-bold text-gray-900">
+                    {stats?.facultyCount || 0}
+                  </p>
+                </div>
+                <AcademicCapIcon className="h-12 w-12 text-orange-500" />
+              </div>
+            </Card>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card>
-            <div className="space-y-1">
-              <p className="text-sm text-gray-600">Total Faculty</p>
-              <p className="text-2xl font-bold text-primary">24</p>
-            </div>
-          </Card>
-          <Card>
-            <div className="space-y-1">
-              <p className="text-sm text-gray-600">Active Schedules</p>
-              <p className="text-2xl font-bold text-primary">156</p>
-            </div>
-          </Card>
-          <Card>
-            <div className="space-y-1">
-              <p className="text-sm text-gray-600">Total Labs</p>
-              <p className="text-2xl font-bold text-primary">12</p>
-            </div>
-          </Card>
-        </div>
+            <Card 
+              className="cursor-pointer bg-white border-2 border-orange-100 hover:border-orange-500 transition-all transform hover:-translate-y-1 shadow-md"
+              onClick={() => router.push("/students")}
+            >
+              <div className="flex items-center justify-between">
+                <div className="space-y-1">
+                  <p className="text-sm text-gray-600 font-medium">
+                    Total Students
+                  </p>
+                  <p className="text-3xl font-bold text-gray-900">
+                    {stats?.studentCount || 0}
+                  </p>
+                </div>
+                <UserGroupIcon className="h-12 w-12 text-orange-500" />
+              </div>
+            </Card>
+            <Card className="cursor-pointer bg-white border-2 border-orange-100 hover:border-orange-500 transition-all transform hover:-translate-y-1 shadow-md">
+              <div className="flex items-center justify-between">
+                <div className="space-y-1">
+                  <p className="text-sm text-gray-600 font-medium">
+                    Departments
+                  </p>
+                  <p className="text-3xl font-bold text-gray-900">
+                    {stats?.departmentCount || 0}
+                  </p>
+                </div>
+                <BuildingOfficeIcon className="h-12 w-12 text-orange-500" />
+              </div>
+            </Card>
+          </div>
 
-        <div className="space-y-4">
-          <h2 className="text-lg font-semibold text-gray-900">
-            Recent Activity
-          </h2>
-          <Card>
-            {[1, 2, 3].map((item) => (
-              <div key={item} className="p-4">
-                <div className="flex items-center justify-between">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card className="cursor-pointer bg-white border-2 border-orange-100 hover:border-orange-500 transition-all transform hover:-translate-y-1 shadow-md">
+              <div className="flex items-center justify-between">
+                <div className="space-y-1">
+                  <p className="text-sm text-gray-600 font-medium">Divisions</p>
+                  <p className="text-3xl font-bold text-gray-900">
+                    {stats?.divisionCount || 0}
+                  </p>
+                </div>
+                <ViewColumnsIcon className="h-12 w-12 text-orange-500" />
+              </div>
+            </Card>
+            <Card className="cursor-pointer bg-white border-2 border-orange-100 hover:border-orange-500 transition-all transform hover:-translate-y-1 shadow-md">
+              <div className="flex items-center justify-between">
+                <div className="space-y-1">
+                  <p className="text-sm text-gray-600 font-medium">Subjects</p>
+                  <p className="text-3xl font-bold text-gray-900">
+                    {stats?.subjectCount || 0}
+                  </p>
+                </div>
+                <BookOpenIcon className="h-12 w-12 text-orange-500" />
+              </div>
+            </Card>
+            <Card className="cursor-pointer bg-white border-2 border-orange-100 hover:border-orange-500 transition-all transform hover:-translate-y-1 shadow-md">
+              <div className="flex items-center justify-between">
+                <div className="space-y-1">
+                  <p className="text-sm text-gray-600 font-medium">
+                    Feedback Forms
+                  </p>
+                  <p className="text-3xl font-bold text-gray-900">
+                    {stats?.feedbackCount || 0}
+                  </p>
+                </div>
+                <ClipboardDocumentListIcon className="h-12 w-12 text-orange-500" />
+              </div>
+            </Card>
+          </div>
+
+          <div className="space-y-4">
+            <h2 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
+              <BoltIcon className="h-6 w-6 text-orange-500" />
+              Quick Actions
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <Card className="cursor-pointer bg-white border-2 border-orange-100 hover:border-orange-500 transition-all transform hover:-translate-y-1 shadow-md">
+                <div className="flex items-center space-x-3">
+                  <UserPlusIcon className="h-8 w-8 text-orange-500" />
                   <div>
-                    <p className="font-medium text-gray-900">
-                      Matrix Upload Completed
-                    </p>
+                    <h3 className="font-medium text-gray-900">
+                      Add New Faculty
+                    </h3>
                     <p className="text-sm text-gray-600">
-                      Faculty schedule matrix processed successfully
+                      Create faculty entries
                     </p>
                   </div>
-                  <span className="text-sm text-gray-500">2 hours ago</span>
                 </div>
-              </div>
-            ))}
-          </Card>
-        </div>
-
-        <div className="space-y-4">
-          <h2 className="text-lg font-semibold text-gray-900">Quick Actions</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <Card>
-              <div className="space-y-2">
-                <h3 className="font-medium text-gray-900">Upload Matrix</h3>
-                <p className="text-sm text-gray-600">
-                  Upload new faculty schedule matrix
-                </p>
-              </div>
-            </Card>
-            <Card>
-              <div className="space-y-2">
-                <h3 className="font-medium text-gray-900">View Schedules</h3>
-                <p className="text-sm text-gray-600">
-                  Check current faculty schedules
-                </p>
-              </div>
-            </Card>
-            <Card>
-              <div className="space-y-2">
-                <h3 className="font-medium text-gray-900">Manage Faculty</h3>
-                <p className="text-sm text-gray-600">
-                  Update faculty information
-                </p>
-              </div>
-            </Card>
+              </Card>
+              <Card className="cursor-pointer bg-white border-2 border-orange-100 hover:border-orange-500 transition-all transform hover:-translate-y-1 shadow-md">
+                <div className="flex items-center space-x-3">
+                  <UserIcon className="h-8 w-8 text-orange-500" />
+                  <div>
+                    <h3 className="font-medium text-gray-900">
+                      Add New Student
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      Create student records
+                    </p>
+                  </div>
+                </div>
+              </Card>
+              <Card className="cursor-pointer bg-white border-2 border-orange-100 hover:border-orange-500 transition-all transform hover:-translate-y-1 shadow-md">
+                <div className="flex items-center space-x-3">
+                  <DocumentPlusIcon className="h-8 w-8 text-orange-500" />
+                  <div>
+                    <h3 className="font-medium text-gray-900">
+                      Create Feedback
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      Set up new feedback forms
+                    </p>
+                  </div>
+                </div>
+              </Card>
+            </div>
           </div>
         </div>
       </div>
