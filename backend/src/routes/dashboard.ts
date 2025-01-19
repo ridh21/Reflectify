@@ -160,8 +160,6 @@ router.get('/departments', async (req, res) => {
   }
 });
 
-// Add these routes to your existing dashboard.ts
-
 // Get all departments with college info
 router.get('/department', async (req, res) => {
   try {

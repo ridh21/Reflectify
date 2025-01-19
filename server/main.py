@@ -386,6 +386,11 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # Route Functions
+
+@app.route('/')
+def index():
+    return "Server is running"
+
 @app.route('/faculty-matrix', methods=['POST'])
 def upload_faculty_matrix():
     response = make_response()
@@ -404,6 +409,7 @@ def upload_faculty_matrix():
         
         # Send to Node.js
         files = {'facultyMatrix': open(filepath, 'rb')}
+        print(f"This are the files of faculty Matrix: ", files)
         nodejs_response = requests.post('http://localhost:4000/api/upload-data/faculty-matrix', files=files)
         
         results = final_func(filepath, college="LDRP-ITR", department="CE")
@@ -427,6 +433,7 @@ def upload_student_data():
                 files = {
                     'studentData': ('student_data.xlsx', f, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
                 }
+                print(f"This are the files of student data: ", files)
                 nodejs_response = requests.post('http://localhost:4000/api/upload-data/student-data', files=files)
                 
                 if nodejs_response.ok:
@@ -450,6 +457,7 @@ def upload_faculty_data():
         file.save(filepath)
         
         files = {'facultyData': open(filepath, 'rb')}
+        print(f"This are the files of faculty data: ", files)
         nodejs_response = requests.post('http://localhost:4000/api/upload-data/faculty-data', files=files)
         
         return jsonify({'message': 'Faculty data file uploaded successfully'})

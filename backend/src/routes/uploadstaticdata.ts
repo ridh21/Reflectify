@@ -46,8 +46,8 @@ const upload: Multer = multer({
 
 router.post(
   '/student-data',
-  isAuthenticated,
-  isAdmin,
+  // isAuthenticated,
+  // isAdmin,
   upload.single('studentData'),
   async (req: Request, res: Response): Promise<void> => {
     try {
@@ -55,7 +55,7 @@ router.post(
         res.status(400).json({ message: 'No file uploaded' });
         return;
       }
-
+      console.log("This is the file, ", req.file);
       const workbook = new ExcelJS.Workbook();
       await workbook.xlsx.readFile(req.file.path);
       const worksheet = workbook.getWorksheet(1);
@@ -174,11 +174,12 @@ router.post(
 
 router.post(
   '/faculty-data',
-  isAuthenticated,
-  isAdmin,
+  // isAuthenticated,
+  // isAdmin,
   upload.single('facultyData'),
   async (req: Request, res: Response): Promise<void> => {
     try {
+      console.log("This is the file, ", req.file);
       if (!req.file) {
         res.status(400).json({ message: 'No file uploaded' });
         return;

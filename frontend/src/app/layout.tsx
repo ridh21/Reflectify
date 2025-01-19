@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
-import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { AuthProvider } from "@/context/AuthContext";
 import { Toaster } from "react-hot-toast";
 import page_icon from "/public/review.png";
 
-const googleSans = DM_Sans({
+import { DM_Sans } from "next/font/google";
+
+const dmSans = DM_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
-  display: "swap",
   variable: "--font-dm-sans",
+  display: "swap",
 });
+
 
 export const metadata: Metadata = {
   icons: {
@@ -28,10 +30,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={dmSans.variable}>
       <body
         suppressHydrationWarning
-        className={`${googleSans.variable} font-sans antialiased flex flex-col bg-background`}
+        className="font-dm-sans antialiased flex flex-col bg-background"
       >
         <AuthProvider>
           <Toaster
