@@ -75,13 +75,13 @@ export default function FacultyMatrixUpload() {
 
     setIsLoading(true);
     try {
-      const response = await fetch(
-        "http://localhost:4000/api/upload/faculty-matrix",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch("http://localhost:8000/faculty-matrix", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
 
       const results = await response.json();
 
