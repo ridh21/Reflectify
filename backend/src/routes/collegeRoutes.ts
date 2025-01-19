@@ -10,10 +10,10 @@ import {
 const router = express.Router();
 
   // College Routes
-router.get('/colleges', getColleges);
-router.post('/colleges/create', createCollege);
-router.get('/colleges/:id', getCollegeById);
-router.put('/colleges/:id/update', updateCollege);
-router.delete('/colleges/:id', deleteCollege);
+router.get('/', getColleges);
+router.post('/create', createCollege);
+router.get('/:id', getCollegeById);
+router.put('/:id/update', updateCollege);
+router.delete('/:id', deleteCollege);
 
 export default router;

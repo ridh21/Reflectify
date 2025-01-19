@@ -10,10 +10,10 @@ import {
 const router = express.Router();
 
 // Semester Routes
-router.get('/semesters', getSemesters);
-router.post('/semesters/create', createSemester);
-router.get('/semesters/:id', getSemesterById);
-router.put('/semesters/:id/update', updateSemester);
-router.delete('/semesters/:id', deleteSemester);
+router.get('/', getSemesters);
+router.post('/create', createSemester);
+router.get('/:id', getSemesterById);
+router.put('/:id/update', updateSemester);
+router.delete('/:id', deleteSemester);
 
 export default router;

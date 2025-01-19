@@ -10,10 +10,10 @@ import {
 const router = express.Router();
 
 // Department Routes
-router.get('/departments', getDepartments);
-router.post('/departments/create', createDepartment);
-router.get('/departments/:id', getDepartmentById);
-router.put('/departments/:id/update', updateDepartment);
-router.delete('/departments/:id', deleteDepartment);
+router.get('/', getDepartments);
+router.post('/create', createDepartment);
+router.get('/:id', getDepartmentById);
+router.put('/:id/update', updateDepartment);
+router.delete('/:id', deleteDepartment);
 
 export default router;

@@ -9,10 +9,10 @@ import {
 
 const router = express.Router();
 
-router.get('/divisions', getDivisions);
-router.post('/divisions/create', createDivision);
-router.get('/divisions/:id', getDivisionById);
-router.put('/divisions/:id/update', updateDivision);
-router.delete('/divisions/:id', deleteDivision);
+router.get('/', getDivisions);
+router.post('/create', createDivision);
+router.get('/:id', getDivisionById);
+router.put('/:id/update', updateDivision);
+router.delete('/:id', deleteDivision);
 
 export default router;
