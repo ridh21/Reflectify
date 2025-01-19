@@ -109,11 +109,10 @@ model Division {
   createdAt          DateTime            @default(now()) @map("created_at")
   updatedAt          DateTime            @updatedAt @map("updated_at")
 
-  @@unique([departmentId, divisionName])
+  @@unique([departmentId, divisionName, semesterId])
   @@index([departmentId, semesterId])
   @@map("divisions")
 }
-
 
 model Subject {
   id           String              @id @default(uuid())
@@ -129,7 +128,7 @@ model Subject {
   createdAt    DateTime            @default(now()) @map("created_at")
   updatedAt    DateTime            @updatedAt @map("updated_at")
 
-  @@unique([departmentId, subjectCode])
+  @@unique([departmentId, abbreviation])
   @@index([departmentId, semesterId])
   @@map("subjects")
 }
@@ -137,7 +136,7 @@ model Subject {
 model Faculty {
   id                String              @id @default(uuid())
   name              String
-  abbreviation      String
+  abbreviation      String              @unique  
   email             String              @unique
   designation       String
   seatingLocation   String              @map("seating_location")
