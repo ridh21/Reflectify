@@ -15,6 +15,7 @@ import {
   DocumentPlusIcon,
   BoltIcon,
 } from "@heroicons/react/24/outline";
+import { useSelector } from "react-redux";
 
 interface DashboardStats {
   facultyCount: number;
@@ -28,7 +29,8 @@ interface DashboardStats {
 export default function Dashboard() {
   const router = useRouter();
   const [stats, setStats] = useState<DashboardStats | null>(null);
-
+  const { currentUser } = useSelector((state) => state.user);
+  console.log("This is the current user we got from redux", currentUser);
   useEffect(() => {
     const fetchStats = async () => {
       const response = await fetch("http://localhost:4000/api/dashboard/stats");
