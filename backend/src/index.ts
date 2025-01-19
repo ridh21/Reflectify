@@ -13,6 +13,7 @@ import collegeRoutes from './routes/collegeRoutes';
 import departmentRoutes from './routes/departmentRoutes';
 import subjectRoutes  from './routes/subjectRoutes';
 import subjectAllocationRoutes from './routes/subjectAllocationRoutes';
+import questionCategoryRoutes from './routes/questionCategoryRoutes';
 import cors from 'cors';
 
 const app = express();
@@ -44,6 +45,9 @@ app.use('/api/colleges', collegeRoutes);
 app.use('/api/departments', departmentRoutes);
 app.use('/api/subjects', subjectRoutes);
 app.use('/api/subject-allocation', subjectAllocationRoutes);
+
+// Question Bank Routes
+app.use('/api/question-categories', questionCategoryRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 4000;
