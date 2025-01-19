@@ -43,7 +43,7 @@ app.use('/api/divisions', divisionRoutes);
 app.use('/api/colleges', collegeRoutes);
 app.use('/api/departments', departmentRoutes);
 app.use('/api/subjects', subjectRoutes);
-app.use('/api/sunject-allocation', subjectAllocationRoutes);
+app.use('/api/subject-allocation', subjectAllocationRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 4000;
