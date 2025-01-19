@@ -8,17 +8,17 @@ import { X, Upload, Eye } from "lucide-react";
 
 const FILE_ROUTES = {
   studentData: {
-    route: "http://localhost:8000/student-data",
+    route: "http://localhost:4000/api/upload-data/student-data",
     label: "Student Data",
     icon: "👥",
   },
   facultyData: {
-    route: "http://localhost:8000/faculty-data",
+    route: "http://localhost:4000/api/upload-data/faculty-data",
     label: "Faculty Data",
     icon: "👨‍🏫",
   },
   subjectData: {
-    route: "http://localhost:8000/subject-data",
+    route: "http://localhost:4000/api/upload-data/subject-data",
     label: "Subject Data",
     icon: "📚",
   },
