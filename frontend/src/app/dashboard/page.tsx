@@ -29,8 +29,6 @@ export default function Dashboard() {
   const router = useRouter();
   const [stats, setStats] = useState<DashboardStats | null>(null);
 
-
-
   useEffect(() => {
     const fetchStats = async () => {
       const response = await fetch("http://localhost:4000/api/dashboard/stats");
@@ -73,7 +71,7 @@ export default function Dashboard() {
               </div>
             </Card>
 
-            <Card 
+            <Card
               className="cursor-pointer bg-white border-2 border-orange-100 hover:border-orange-500 transition-all transform hover:-translate-y-1 shadow-md"
               onClick={() => router.push("/students")}
             >
@@ -89,7 +87,10 @@ export default function Dashboard() {
                 <UserGroupIcon className="h-12 w-12 text-orange-500" />
               </div>
             </Card>
-            <Card className="cursor-pointer bg-white border-2 border-orange-100 hover:border-orange-500 transition-all transform hover:-translate-y-1 shadow-md">
+            <Card
+              className="cursor-pointer bg-white border-2 border-orange-100 hover:border-orange-500 transition-all transform hover:-translate-y-1 shadow-md"
+              onClick={() => router.push("/department")}
+            >
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
                   <p className="text-sm text-gray-600 font-medium">

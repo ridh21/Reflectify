@@ -40,13 +40,13 @@ export default function RootLayout({
               success: {
                 style: {
                   background: "#ffffff",
-                  color: "green",
+                  color: "#16a34a",
                 },
               },
               error: {
                 style: {
-                  background: "#ef4444",
-                  color: "white",
+                  background: "#ffffff",
+                  color: "#ef4444",
                 },
               },
             }}

@@ -7,17 +7,17 @@ import {
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
 
-interface DeleteFacultyModalProps {
+interface DeleteDepartmentModalProps {
   isOpen: boolean;
   onClose: () => void;
   onConfirm: () => void;
 }
 
-export function DeleteFacultyModal({
+export function DeleteDepartmentModal({
   isOpen,
   onClose,
   onConfirm,
-}: DeleteFacultyModalProps) {
+}: DeleteDepartmentModalProps) {
   const [isDeleting, setIsDeleting] = useState(false);
 
   const handleDelete = async () => {
@@ -33,15 +33,15 @@ export function DeleteFacultyModal({
       <div className="fixed inset-0 flex items-center justify-center p-4">
         <Dialog.Panel className="mx-auto max-w-md w-full rounded-lg bg-white p-6 transform ease-out duration-300 transition-all animate-in fade-in zoom-in-95">
           <div className="text-center mb-6">
-            <div className="mx-auto w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mb-3">
-              <ExclamationTriangleIcon className="h-10 w-10 text-red-500" />
+            <div className="mx-auto w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mb-3">
+              <ExclamationTriangleIcon className="h-6 w-6 text-red-500" />
             </div>
-            <Dialog.Title className="text-2xl font-semibold text-gray-900">
-              Delete Faculty Member
+            <Dialog.Title className="text-xl font-semibold text-gray-900">
+              Delete Department
             </Dialog.Title>
             <p className="mt-1 text-sm text-gray-500">
               This action cannot be undone. This will permanently delete the
-              faculty member from the database.
+              department and all associated data.
             </p>
             <button
               onClick={onClose}
@@ -57,12 +57,20 @@ export function DeleteFacultyModal({
                 <ExclamationTriangleIcon className="h-5 w-5 text-red-400" />
               </div>
               <div className="ml-3">
-                <h3 className="text-sm font-medium text-red-800">Warning</h3>
+                <h3 className="text-sm font-medium text-red-800">
+                  Warning: Deletion Impact
+                </h3>
                 <div className="mt-2 text-sm text-red-700">
                   <ul className="list-disc pl-5 space-y-1">
-                    <li>All associated data will be removed</li>
-                    <li>This action is permanent and irreversible</li>
-                    <li>Related records might be affected</li>
+                    <li>
+                      All faculty members in this department will be affected
+                    </li>
+                    <li>All subjects under this department will be removed</li>
+                    <li>
+                      Student records associated with this department will be
+                      impacted
+                    </li>
+                    <li>Historical data will be permanently lost</li>
                   </ul>
                 </div>
               </div>
@@ -91,7 +99,7 @@ export function DeleteFacultyModal({
               ) : (
                 <>
                   <TrashIcon className="h-5 w-5" />
-                  Delete Faculty
+                  Delete Department
                 </>
               )}
             </button>

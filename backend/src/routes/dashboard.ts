@@ -160,4 +160,74 @@ router.get('/departments', async (req, res) => {
   }
 });
 
+// Add these routes to your existing dashboard.ts
+
+// Get all departments with college info
+router.get('/department', async (req, res) => {
+  try {
+    const departments = await prisma.department.findMany({
+      include: {
+        _count: {
+          select: {
+            faculties: true,
+            students: true,
+          },
+        },
+      },
+    });
+    res.json(departments);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch departments' });
+  }
+});
+
+// Create department
+router.post('/department', async (req, res) => {
+  try {
+    const department = await prisma.department.create({
+      data: {
+        name: req.body.name,
+        abbreviation: req.body.abbreviation,
+        hodName: req.body.hodName,
+        hodEmail: req.body.hodEmail,
+        collegeId: req.body.collegeId,
+      },
+      include: {
+        college: true,
+      },
+    });
+    res.json(department);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to create department' });
+  }
+});
+
+// Update department
+router.put('/department/:id', async (req, res) => {
+  try {
+    const department = await prisma.department.update({
+      where: { id: req.params.id },
+      data: req.body,
+      include: {
+        college: true,
+      },
+    });
+    res.json(department);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to update department' });
+  }
+});
+
+// Delete department
+router.delete('/department/:id', async (req, res) => {
+  try {
+    await prisma.department.delete({
+      where: { id: req.params.id },
+    });
+    res.json({ message: 'Department deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to delete department' });
+  }
+});
+
 export default router;
