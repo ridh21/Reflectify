@@ -42,7 +42,7 @@ model OTP {
 
 model College {
   id            String       @id @default(uuid())
-  name          String
+  name          String       @unique
   websiteUrl    String       @map("website_url")
   address       String
   contactNumber String       @map("contact_number")
@@ -67,10 +67,11 @@ model Department {
   faculties    Faculty[]
   subjects     Subject[]
   students     Student[]
+  Division     Division[]
   createdAt    DateTime   @default(now()) @map("created_at")
   updatedAt    DateTime   @updatedAt @map("updated_at")
-  Division     Division[]
 
+  @@unique([name, collegeId])
   @@index([collegeId])
   @@map("departments")
 }
@@ -88,6 +89,7 @@ model Semester {
   createdAt      DateTime            @default(now()) @map("created_at")
   updatedAt      DateTime            @updatedAt @map("updated_at")
 
+  @@unique([departmentId, semesterNumber])
   @@index([departmentId])
   @@map("semesters")
 }
@@ -107,9 +109,11 @@ model Division {
   createdAt          DateTime            @default(now()) @map("created_at")
   updatedAt          DateTime            @updatedAt @map("updated_at")
 
+  @@unique([departmentId, divisionName])
   @@index([departmentId, semesterId])
   @@map("divisions")
 }
+
 
 model Subject {
   id           String              @id @default(uuid())
