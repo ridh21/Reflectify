@@ -7,7 +7,7 @@ import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 
 const navigation = [
-  { name: "Dashboard", href: "/dashboard" },
+  // { name: "Dashboard", href: "/dashboard" },
   { name: "Upload Faculty Matrix Excel", href: "/faculty-matrix-upload" },
   { name: "Upload Data", href: "/upload-data" },
 ];
