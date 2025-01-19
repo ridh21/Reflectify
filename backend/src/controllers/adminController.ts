@@ -84,7 +84,8 @@ export const createSuperAdmin = async (req: Request, res: Response) => {
 export const loginAdmin = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
-
+    console.log("This is the email and password", email, password);
+    
     const admin = await prisma.admin.findUnique({
       where: { email }
     });
@@ -109,15 +110,26 @@ export const loginAdmin = async (req: Request, res: Response) => {
       { expiresIn: '24h' }
     );
 
+    // Set cookie that never expires
+    res.cookie('token', token, {
+      httpOnly: true,
+      // secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      // maxAge: Number.MAX_SAFE_INTEGER // This makes the cookie last as long as possible
+    });
+
+    // Create user object without password
+    const userWithoutPassword = {
+      id: admin.id,
+      name: admin.name,
+      email: admin.email,
+      designation: admin.designation,
+      isSuper: admin.isSuper
+    };
+
     return res.status(200).json({
       token,
-      admin: {
-        id: admin.id,
-        name: admin.name,
-        email: admin.email,
-        designation: admin.designation,
-        isSuper: admin.isSuper
-      }
+      user: userWithoutPassword
     });
   } catch (error) {
     return res.status(500).json({ message: 'Error logging in', error });

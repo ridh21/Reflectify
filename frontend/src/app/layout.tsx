@@ -6,6 +6,10 @@ import { Toaster } from "react-hot-toast";
 import page_icon from "/public/review.png";
 
 import { DM_Sans } from "next/font/google";
+import { Provider } from "react-redux";
+import { persistor, store } from "@/reducers/index";
+import { PersistGate } from "redux-persist/integration/react";
+import { Providers } from "@/provider/Provider";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -13,7 +17,6 @@ const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   display: "swap",
 });
-
 
 export const metadata: Metadata = {
   icons: {
@@ -35,27 +38,29 @@ export default function RootLayout({
         suppressHydrationWarning
         className="font-dm-sans antialiased flex flex-col bg-background"
       >
-        <AuthProvider>
-          <Toaster
-            position="top-center"
-            toastOptions={{
-              success: {
-                style: {
-                  background: "#ffffff",
-                  color: "#16a34a",
+        <Providers>
+          <AuthProvider>
+            <Toaster
+              position="top-center"
+              toastOptions={{
+                success: {
+                  style: {
+                    background: "#ffffff",
+                    color: "#16a34a",
+                  },
                 },
-              },
-              error: {
-                style: {
-                  background: "#ffffff",
-                  color: "#ef4444",
+                error: {
+                  style: {
+                    background: "#ffffff",
+                    color: "#ef4444",
+                  },
                 },
-              },
-            }}
-          />
-          <Header />
-          <main className="m-0 p-0">{children}</main>
-        </AuthProvider>
+              }}
+            />
+            <Header />
+            <main className="m-0 p-0">{children}</main>
+          </AuthProvider>
+        </Providers>
       </body>
     </html>
   );
