@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/Card";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ExcelJS from "exceljs";
+import { useSelector } from "react-redux";
 
 interface ClassSchedule {
   [key: string]: {
@@ -22,6 +23,7 @@ export default function FacultyMatrixUpload() {
   const [processedData, setProcessedData] = useState<ClassSchedule | null>(
     null
   );
+
   const [isLoading, setIsLoading] = useState(false);
   const [activeTable, setActiveTable] = useState<any[] | null>(null);
 
@@ -160,7 +162,7 @@ export default function FacultyMatrixUpload() {
       <ToastContainer position="top-right" />
       <div className="space-y-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-3xl font-bold text-gray-900">
             Faculty Matrix Upload
           </h1>
           <p className="mt-2 text-sm text-gray-600">
@@ -176,14 +178,14 @@ export default function FacultyMatrixUpload() {
               onChange={handleFileChange}
               className="block w-full text-sm text-gray-500
                 file:mr-4 file:py-2 file:px-4
-                file:rounded-full file:border-0
+                file:rounded-lg file:border-0
                 file:text-sm file:font-medium
-                file:bg-primary/10 file:text-primary
-                hover:file:bg-primary/20
+                file:bg-orange-100 file:text-orange-700
+                hover:file:bg-orange-200
                 cursor-pointer"
             />
             {selectedFile && (
-              <p className="mt-1 text-sm text-green-600">
+              <p className="mt-1 text-sm text-orange-700">
                 Selected: {selectedFile.name}
               </p>
             )}
@@ -191,8 +193,8 @@ export default function FacultyMatrixUpload() {
               <button
                 onClick={handlePreview}
                 disabled={!selectedFile || isLoading}
-                className="w-1/2 bg-gray-600 text-white py-2 px-4 rounded-md
-                  hover:bg-gray-700 focus:outline-none focus:ring-2
+                className="w-1/2 bg-gray-700 text-white py-2 px-4 rounded-md
+                  hover:bg-gray-800 focus:outline-none focus:ring-2
                   focus:ring-gray-500 focus:ring-offset-2 transition-colors
                   font-medium disabled:bg-gray-300"
               >
@@ -201,10 +203,10 @@ export default function FacultyMatrixUpload() {
               <button
                 onClick={handleUpload}
                 disabled={!selectedFile || isLoading}
-                className="w-1/2 bg-blue-600 text-white py-2 px-4 rounded-md
-                  hover:bg-blue-700 focus:outline-none focus:ring-2
-                  focus:ring-blue-500 focus:ring-offset-2 transition-colors
-                  font-medium disabled:bg-blue-300"
+                className="w-1/2 bg-orange-600 text-white py-2 px-4 rounded-md
+                  hover:bg-orange-700 focus:outline-none focus:ring-2
+                  focus:ring-orange-500 focus:ring-offset-2 transition-colors
+                  font-medium disabled:bg-orange-300"
               >
                 {isLoading ? "Processing..." : "Upload"}
               </button>
@@ -214,7 +216,7 @@ export default function FacultyMatrixUpload() {
 
         {isLoading ? (
           <div className="flex justify-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-600"></div>
           </div>
         ) : activeTable ? (
           <Card>

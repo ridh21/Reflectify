@@ -1,21 +1,20 @@
 "use client";
 
 import { Card } from "@/components/ui/Card";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import {
   AcademicCapIcon,
-  UserGroupIcon,
-  BuildingOfficeIcon,
-  ViewColumnsIcon,
-  BookOpenIcon,
-  ClipboardDocumentListIcon,
-  UserPlusIcon,
-  UserIcon,
-  DocumentPlusIcon,
   BoltIcon,
+  BookOpenIcon,
+  BuildingOfficeIcon,
+  ClipboardDocumentListIcon,
+  DocumentPlusIcon,
+  UserGroupIcon,
+  UserIcon,
+  UserPlusIcon,
+  ViewColumnsIcon,
 } from "@heroicons/react/24/outline";
-import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface DashboardStats {
   facultyCount: number;
@@ -29,8 +28,7 @@ interface DashboardStats {
 export default function Dashboard() {
   const router = useRouter();
   const [stats, setStats] = useState<DashboardStats | null>(null);
-  const { currentUser } = useSelector((state) => state.user);
-  console.log("This is the current user we got from redux", currentUser);
+
   useEffect(() => {
     const fetchStats = async () => {
       const response = await fetch("http://localhost:4000/api/dashboard/stats");

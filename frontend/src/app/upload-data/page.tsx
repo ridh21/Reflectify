@@ -4,7 +4,7 @@ import { useState } from "react";
 import ExcelJS from "exceljs";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { X, Upload, Eye } from "lucide-react";
+import { X, Upload, Eye, FileSpreadsheet } from "lucide-react";
 
 const FILE_ROUTES = {
   studentData: {
@@ -140,167 +140,158 @@ export default function UploadPage() {
     setActiveTable(null);
   };
 
+  
+  
   return (
-    <div
-      suppressHydrationWarning
-      className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-12 px-4 sm:px-6 lg:px-8"
-    >
+    <div className="min-h-screen bg-gray-50">
       <ToastContainer position="top-right" />
-      <div className="max-w-full mx-auto">
-        <div className="flex flex-col md:flex-row gap-8">
-          <div className="md:w-[35%] flex-shrink-0">
-            <div className="bg-white rounded-2xl shadow-xl p-8 backdrop-blur-sm bg-white/80">
-              <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mb-8 text-center">
-                Data Upload Center
-              </h1>
 
-              <div className="space-y-6">
-                {Object.entries(FILE_ROUTES).map(([key, { label, icon }]) => (
-                  <div
-                    key={key}
-                    className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl hover:shadow-md transition-all duration-300"
-                  >
-                    <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                      <span>{icon}</span>
-                      <span className="text-gray-800">{label}</span>
-                    </h2>
-                    <div className="relative">
-                      <input
-                        id={key}
-                        type="file"
-                        accept=".xlsx,.xls"
-                        onChange={(e) => handleFileChange(e, key)}
-                        className="block w-full text-sm text-gray-500
-                          file:mr-4 file:py-2.5 file:px-6
-                          file:rounded-full file:border-0
-                          file:text-sm file:font-semibold
-                          file:bg-blue-600 file:text-white
-                          hover:file:bg-blue-700
-                          cursor-pointer transition-all duration-300"
-                      />
-                      {files[key] && (
-                        <div className="flex items-center mt-3 bg-blue-100 p-2 rounded-lg">
-                          <p className="text-sm text-blue-700 flex-grow truncate">
-                            {files[key]?.name}
-                          </p>
-                          <button
-                            onClick={() => handleClearFile(key)}
-                            className="p-1 hover:bg-blue-200 rounded-full transition-colors duration-200"
-                          >
-                            <X className="h-4 w-4 text-blue-700" />
-                          </button>
-                        </div>
-                      )}
-                    </div>
-                    <div className="flex gap-4 mt-4">
-                      <button
-                        onClick={() => handlePreview(key)}
-                        disabled={!files[key]}
-                        className="w-1/2 bg-indigo-600 text-white py-2.5 px-4 rounded-lg
-                          hover:bg-indigo-700 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
-                          transition-all duration-300 flex items-center justify-center gap-2
-                          disabled:bg-gray-300 disabled:cursor-not-allowed"
-                      >
-                        <Eye className="h-4 w-4" />
-                        Preview
-                      </button>
-                      <button
-                        onClick={() => handleSubmit(key)}
-                        disabled={loadingStates[key]}
-                        className="w-1/2 bg-blue-600 text-white py-2.5 px-4 rounded-lg
-                          hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
-                          transition-all duration-300 flex items-center justify-center gap-2
-                          disabled:bg-gray-300 disabled:cursor-not-allowed"
-                      >
-                        {loadingStates[key] ? (
-                          <span className="flex items-center gap-2">
-                            <svg
-                              className="animate-spin h-4 w-4"
-                              viewBox="0 0 24 24"
-                            >
-                              <circle
-                                className="opacity-25"
-                                cx="12"
-                                cy="12"
-                                r="10"
-                                stroke="currentColor"
-                                strokeWidth="4"
-                                fill="none"
-                              />
-                              <path
-                                className="opacity-75"
-                                fill="currentColor"
-                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                              />
-                            </svg>
-                            Processing
-                          </span>
-                        ) : (
-                          <>
-                            <Upload className="h-4 w-4" />
-                            Upload
-                          </>
-                        )}
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
+      {/* Header Section */}
+      <header className="bg-white border-b border-gray-200 text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <h1 className="text-2xl font-semibold text-gray-900">Data Upload Center</h1>
+        </div>
+      </header>
+
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex flex-wrap justify-between gap-2">
+          {Object.entries(FILE_ROUTES).map(([key, { label, icon }]) => (
+            <div
+              key={key}
+              className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 flex-1 max-w-[30%]"
+            >
+              <div className="p-6">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-2 bg-orange-50 rounded-lg">
+              <FileSpreadsheet className="h-5 w-5 text-orange-600" />
             </div>
+            <h2 className="text-lg font-medium text-gray-900">{label}</h2>
           </div>
 
-          {activeTable && (
-            <div className="md:w-[65%]">
-              <div className="bg-white rounded-2xl shadow-xl p-8 h-[calc(100vh-6rem)] backdrop-blur-sm bg-white/80">
-                <div className="sticky top-0 bg-white z-20 pb-4 border-b">
-                  <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
-                    {activeTable.type} Preview
-                  </h2>
-                </div>
+          <div className="space-y-4">
+            <div className="relative">
+              <input
+                id={key}
+                type="file"
+                accept=".xlsx,.xls"
+                onChange={(e) => handleFileChange(e, key)}
+                className="block w-full text-sm text-gray-500
+            file:mr-4 file:py-2.5 file:px-4
+            file:rounded-lg file:border-0
+            file:text-sm file:font-medium
+            file:bg-orange-600 file:text-white
+            hover:file:bg-orange-700
+            cursor-pointer transition-all duration-200"
+              />
+            </div>
 
-                <div
-                  className="overflow-auto mt-4 rounded-xl"
-                  style={{ height: "calc(100% - 60px)" }}
+            {files[key] && (
+              <div className="flex items-center bg-gray-50 p-3 rounded-lg">
+                <FileSpreadsheet className="h-4 w-4 text-gray-600 mr-2" />
+                <p className="text-sm text-gray-600 flex-grow truncate">
+            {files[key]?.name}
+                </p>
+                <button
+            onClick={() => handleClearFile(key)}
+            className="p-1 hover:bg-gray-200 rounded-full"
                 >
-                  <table className="w-full divide-y divide-gray-200">
-                    <thead className="bg-gradient-to-r from-blue-50 to-indigo-50 sticky top-0 z-10">
-                      <tr>
-                        {Object.keys(activeTable.data[0] || {}).map(
-                          (header) => (
-                            <th
-                              key={header}
-                              className="px-6 py-3.5 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
-                            >
-                              {header}
-                            </th>
-                          )
-                        )}
-                      </tr>
-                    </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
-                      {activeTable.data.map((row, index) => (
-                        <tr
-                          key={index}
-                          className="hover:bg-gray-50 transition-colors duration-200"
+            <X className="h-4 w-4 text-gray-600" />
+                </button>
+              </div>
+            )}
+
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                onClick={() => handlePreview(key)}
+                disabled={!files[key]}
+                className="inline-flex items-center justify-center px-4 py-2.5 border border-gray-200 
+            rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50
+            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500
+            disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <Eye className="h-4 w-4 mr-2" />
+                Preview
+              </button>
+
+              <button
+                onClick={() => handleSubmit(key)}
+                disabled={loadingStates[key]}
+                className="inline-flex items-center justify-center px-4 py-2.5 
+            rounded-lg text-sm font-medium text-white bg-orange-600 
+            hover:bg-orange-700 focus:outline-none focus:ring-2 
+            focus:ring-offset-2 focus:ring-orange-500
+            disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loadingStates[key] ? (
+            <div className="flex items-center">
+              <div className="animate-spin h-4 w-4 mr-2 border-2 border-white border-t-transparent rounded-full" />
+              Processing
+            </div>
+                ) : (
+            <>
+              <Upload className="h-4 w-4 mr-2" />
+              Upload
+            </>
+                )}
+              </button>
+            </div>
+          </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Preview Section */}
+        <div className="mt-8">
+          {activeTable ? (
+            <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-[calc(100vh-12rem)]">
+              <div className="p-6 border-b border-gray-200">
+                <h2 className="text-lg font-medium text-gray-900">
+                  {activeTable.type} Preview
+                </h2>
+              </div>
+              <div className="overflow-auto" style={{ height: "calc(100% - 73px)" }}>
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      {Object.keys(activeTable.data[0] || {}).map((header) => (
+                        <th
+                          key={header}
+                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                         >
-                          {Object.values(row).map((value: any, cellIndex) => (
-                            <td
-                              key={cellIndex}
-                              className="px-6 py-4 whitespace-nowrap text-sm text-gray-600"
-                            >
-                              {value?.toString()}
-                            </td>
-                          ))}
-                        </tr>
+                          {header}
+                        </th>
                       ))}
-                    </tbody>
-                  </table>
-                </div>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {activeTable.data.map((row, index) => (
+                      <tr key={index} className="hover:bg-gray-50">
+                        {Object.values(row).map((value: any, cellIndex) => (
+                          <td
+                            key={cellIndex}
+                            className="px-6 py-4 whitespace-nowrap text-sm text-gray-600"
+                          >
+                            {value?.toString()}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ) : (
+            <div className="h-[calc(100vh-12rem)] bg-white rounded-lg border border-gray-200 shadow-sm flex items-center justify-center">
+              <div className="text-center">
+                <FileSpreadsheet className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                <h3 className="text-lg font-medium text-gray-900">No Preview Available</h3>
+                <p className="mt-2 text-sm text-gray-500">Select a file and click preview to see the content</p>
               </div>
             </div>
           )}
         </div>
-      </div>
+      </main>
     </div>
   );
 }
