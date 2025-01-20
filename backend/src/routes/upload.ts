@@ -1,6 +1,15 @@
 import express, { Router, Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
-import { v4 as uuidv4 } from 'uuid';
+
+const router: Router = express.Router();
+const prisma: PrismaClient = new PrismaClient();
+
+const collegeCache = new Map();
+const departmentCache = new Map();
+const semesterCache = new Map();
+const divisionCache = new Map();
+const subjectCache = new Map();
+const facultyCache = new Map();
 
 interface ProcessedData {
   [college: string]: {
@@ -17,199 +26,248 @@ interface ProcessedData {
   };
 }
 
-const router: Router = express.Router();
-const prisma: PrismaClient = new PrismaClient();
+interface AllocationBatchItem {
+  facultyId: string;
+  subjectId: string;
+  divisionId: string;
+  semesterId: string;
+  lectureType: 'LECTURE' | 'LAB';
+  academicYear: string;
+}
 
 router.post('/faculty-matrix', async (req: Request, res: Response) => {
+  const batchSize = 50;
+  let allocationBatch: AllocationBatchItem[] = [];
+  const currentYear = new Date().getFullYear().toString();
 
   try {
     const processedData: ProcessedData = req.body;
 
     for (const [collegeName, collegeData] of Object.entries(processedData)) {
-      let college = await prisma.college.findFirst({
-        where: { name: collegeName },
-      });
-
+      let college = collegeCache.get(collegeName);
       if (!college) {
-        college = await prisma.college.create({
-          data: {
-            name: collegeName,
-            websiteUrl: `https://www.${collegeName.toLowerCase()}.ac.in`,
+        college = await prisma.college.upsert({
+          where: { id: 'LDRP-ITR' },
+          create: {
+            id: 'LDRP-ITR',
+            name: 'LDRP Institute of Technology and Research',
+            websiteUrl: 'https://www.ldrp.ac.in',
             address: 'Gujarat',
             contactNumber: '1234567890',
-            logo: `${collegeName.toLowerCase()}_logo.png`,
+            logo: 'ldrp_logo.png',
             images: {},
-          },
-        });
-      }
-
-      for (const [deptName, deptData] of Object.entries(collegeData)) {
-        let department = await prisma.department.upsert({
-          where: {
-            name_collegeId: {
-              name: deptName,
-              collegeId: college.id,
-            },
-          },
-          create: {
-            name: deptName,
-            abbreviation: deptName,
-            hodName: `HOD of ${deptName}`,
-            hodEmail: `hod.${deptName.toLowerCase()}@ldrp.ac.in`,
-            collegeId: college.id,
           },
           update: {},
         });
+        collegeCache.set(collegeName, college);
+      }
 
-        for (const [semesterNum, semData] of Object.entries(deptData)) {
-          const semester = await prisma.semester.upsert({
+      for (const [deptName, deptData] of Object.entries(collegeData)) {
+        const deptKey = `${collegeName}_${deptName}`;
+        let department = departmentCache.get(deptKey);
+        if (!department) {
+          department = await prisma.department.upsert({
             where: {
-              departmentId_semesterNumber: {
-                departmentId: department.id,
-                semesterNumber: parseInt(semesterNum),
+              name_collegeId: {
+                name: deptName,
+                collegeId: 'LDRP-ITR',
               },
             },
             create: {
-              departmentId: department.id,
-              semesterNumber: parseInt(semesterNum),
-              academicYear: new Date().getFullYear().toString(),
+              name: deptName,
+              abbreviation: deptName,
+              hodName: `HOD of ${deptName}`,
+              hodEmail: `hod.${deptName.toLowerCase()}@ldrp.ac.in`,
+              collegeId: 'LDRP-ITR',
             },
             update: {},
           });
+          departmentCache.set(deptKey, department);
+        }
 
-          for (const [divisionName, divData] of Object.entries(semData)) {
-            const division = await prisma.division.upsert({
-              where: {
-                departmentId_divisionName: {
-                  departmentId: department.id,
-                  divisionName: divisionName,
-                },
-              },
-              create: {
-                departmentId: department.id,
-                semesterId: semester.id,
-                divisionName: divisionName,
-                studentCount: 0,
-              },
-              update: {},
-            });
-
-            for (const [subjectCode, subjectData] of Object.entries(divData)) {
-              let subject = await prisma.subject.findFirst({
-                where: { abbreviation: subjectCode },
-              });
-
-              if (!subject) {
-                subject = await prisma.subject.create({
-                  data: {
-                    name: subjectCode,
-                    abbreviation: subjectCode,
-                    subjectCode: subjectCode,
+        await Promise.all(
+          Object.entries(deptData).map(async ([semesterNum, semData]) => {
+            const semKey = `${deptKey}_${semesterNum}_${currentYear}`;
+            let semester = semesterCache.get(semKey);
+            if (!semester) {
+              semester = await prisma.semester.upsert({
+                where: {
+                  departmentId_semesterNumber: {
                     departmentId: department.id,
-                    semesterId: semester.id,
+                    semesterNumber: parseInt(semesterNum),
                   },
-                });
-              }
+                },
+                create: {
+                  departmentId: department.id,
+                  semesterNumber: parseInt(semesterNum),
+                  academicYear: currentYear,
+                },
+                update: {
+                  academicYear: currentYear,
+                },
+              });
+              semesterCache.set(semKey, semester);
+            }
 
-              if (subjectData.lectures?.designated_faculty) {
-                let faculty = await prisma.faculty.findFirst({
-                  where: {
-                    abbreviation: subjectData.lectures.designated_faculty,
-                  },
-                });
+            await Promise.all(
+              Object.entries(semData).map(async ([divisionName, divData]) => {
+                const divKey = `${deptKey}_${divisionName}_${semester.id}`;
+                let division = divisionCache.get(divKey);
 
-                if (!faculty) {
-                  faculty = await prisma.faculty.create({
-                    data: {
-                      name: subjectData.lectures.designated_faculty,
-                      abbreviation: subjectData.lectures.designated_faculty,
-                      email: `${subjectData.lectures.designated_faculty.toLowerCase()}@ldrp.ac.in`,
-                      designation: 'Assistant Professor',
-                      seatingLocation: `${department.id} Department`,
-                      joiningDate: new Date(),
-                      departmentId: department.id,
+                if (!division) {
+                  division = await prisma.division.upsert({
+                    where: {
+                      departmentId_divisionName_semesterId: {
+                        departmentId: department.id,
+                        divisionName: divisionName,
+                        semesterId: semester.id,
+                      },
                     },
+                    create: {
+                      departmentId: department.id,
+                      semesterId: semester.id,
+                      divisionName: divisionName,
+                      studentCount: 0,
+                    },
+                    update: {},
                   });
+                  divisionCache.set(divKey, division);
                 }
 
-                await prisma.subjectAllocation.upsert({
-                  where: {
-                    facultyId_subjectId_divisionId_semesterId_lectureType: {
+                for (const [subjectCode, subjectData] of Object.entries(
+                  divData
+                )) {
+                  const subjectKey = `${deptKey}_${subjectCode}`;
+                  let subject = subjectCache.get(subjectKey);
+                  if (!subject) {
+                    subject = await prisma.subject.upsert({
+                      where: {
+                        departmentId_abbreviation: {
+                          departmentId: department.id,
+                          abbreviation: subjectCode,
+                        },
+                      },
+                      create: {
+                        name: subjectCode,
+                        abbreviation: subjectCode,
+                        subjectCode: subjectCode,
+                        departmentId: department.id,
+                        semesterId: semester.id,
+                        type: 'MANDATORY',
+                      },
+                      update: {},
+                    });
+                    subjectCache.set(subjectKey, subject);
+                  }
+
+                  if (subjectData.lectures?.designated_faculty) {
+                    const facultyKey = subjectData.lectures.designated_faculty;
+                    let faculty = facultyCache.get(facultyKey);
+
+                    if (!faculty) {
+                      const facultyEmail = `${facultyKey.toLowerCase()}_ce@ldrp.ac.in`;
+                      faculty = await prisma.faculty.upsert({
+                        where: { abbreviation: facultyKey },
+                        create: {
+                          name: facultyKey,
+                          abbreviation: facultyKey,
+                          email: facultyEmail,
+                          designation: 'Assistant Professor',
+                          seatingLocation: `${department.name} Department`,
+                          joiningDate: new Date(),
+                          departmentId: department.id,
+                        },
+                        update: {},
+                      });
+                      facultyCache.set(facultyKey, faculty);
+                    }
+
+                    allocationBatch.push({
                       facultyId: faculty.id,
                       subjectId: subject.id,
                       divisionId: division.id,
                       semesterId: semester.id,
                       lectureType: 'LECTURE',
-                    },
-                  },
-                  create: {
-                    facultyId: faculty.id,
-                    subjectId: subject.id,
-                    divisionId: division.id,
-                    semesterId: semester.id,
-                    lectureType: 'LECTURE',
-                    academicYear: new Date().getFullYear().toString(),
-                  },
-                  update: {},
-                });
-              }
-
-              if (subjectData.labs) {
-                for (const [batch, labData] of Object.entries(
-                  subjectData.labs
-                )) {
-                  let labFaculty = await prisma.faculty.findFirst({
-                    where: { abbreviation: labData.designated_faculty },
-                  });
-
-                  if (!labFaculty) {
-                    labFaculty = await prisma.faculty.create({
-                      data: {
-                        name: labData.designated_faculty,
-                        abbreviation: labData.designated_faculty,
-                        email: `${labData.designated_faculty.toLowerCase()}@ldrp.ac.in`,
-                        designation: 'Assistant Professor',
-                        seatingLocation: `${department.id} Department`,
-                        joiningDate: new Date(),
-                        departmentId: department.id,
-                      },
+                      academicYear: currentYear,
                     });
                   }
 
-                  await prisma.subjectAllocation.upsert({
-                    where: {
-                      facultyId_subjectId_divisionId_semesterId_lectureType: {
+                  if (subjectData.labs) {
+                    for (const [batch, labData] of Object.entries(
+                      subjectData.labs
+                    )) {
+                      const labFacultyKey = labData.designated_faculty;
+                      let labFaculty = facultyCache.get(labFacultyKey);
+
+                      if (!labFaculty) {
+                        const labFacultyEmail = `${labFacultyKey.toLowerCase()}_ce@ldrp.ac.in`;
+                        labFaculty = await prisma.faculty.upsert({
+                          where: { abbreviation: labFacultyKey },
+                          create: {
+                            name: labFacultyKey,
+                            abbreviation: labFacultyKey,
+                            email: labFacultyEmail,
+                            designation: 'Assistant Professor',
+                            seatingLocation: `${department.name} Department`,
+                            joiningDate: new Date(),
+                            departmentId: department.id,
+                          },
+                          update: {},
+                        });
+                        facultyCache.set(labFacultyKey, labFaculty);
+                      }
+
+                      allocationBatch.push({
                         facultyId: labFaculty.id,
                         subjectId: subject.id,
                         divisionId: division.id,
                         semesterId: semester.id,
                         lectureType: 'LAB',
-                      },
-                    },
-                    create: {
-                      facultyId: labFaculty.id,
-                      subjectId: subject.id,
-                      divisionId: division.id,
-                      semesterId: semester.id,
-                      lectureType: 'LAB',
-                      academicYear: new Date().getFullYear().toString(),
-                    },
-                    update: {},
-                  });
+                        academicYear: currentYear,
+                      });
+                    }
+                  }
+
+                  if (allocationBatch.length >= batchSize) {
+                    const validAllocations = allocationBatch.filter(
+                      (a) =>
+                        a.facultyId &&
+                        a.subjectId &&
+                        a.divisionId &&
+                        a.semesterId
+                    );
+                    if (validAllocations.length > 0) {
+                      await prisma.subjectAllocation.createMany({
+                        data: validAllocations,
+                        skipDuplicates: true,
+                      });
+                    }
+                    allocationBatch = [];
+                  }
                 }
-              }
-            }
-          }
-        }
+              })
+            );
+          })
+        );
+      }
+    }
+
+    if (allocationBatch.length > 0) {
+      const validAllocations = allocationBatch.filter(
+        (a) => a.facultyId && a.subjectId && a.divisionId && a.semesterId
+      );
+      if (validAllocations.length > 0) {
+        await prisma.subjectAllocation.createMany({
+          data: validAllocations,
+          skipDuplicates: true,
+        });
       }
     }
 
     res.status(200).json({
       success: true,
       message: 'Faculty matrix processed successfully',
-      details: {
-        timestamp: new Date().toISOString(),
-      },
+      details: { timestamp: new Date().toISOString() },
     });
   } catch (error) {
     console.error('Processing error:', error);
@@ -222,6 +280,13 @@ router.post('/faculty-matrix', async (req: Request, res: Response) => {
         timestamp: new Date().toISOString(),
       },
     });
+  } finally {
+    collegeCache.clear();
+    departmentCache.clear();
+    semesterCache.clear();
+    divisionCache.clear();
+    subjectCache.clear();
+    facultyCache.clear();
   }
 });
 

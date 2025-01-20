@@ -69,6 +69,7 @@ router.post(
       const batchSize = 50;
       let batch = [];
       const processedRows = [];
+      const currentYear = new Date().getFullYear().toString();
 
       const getCellValue = (cell: ExcelJS.Cell): string => {
         const value = cell.value;
@@ -91,12 +92,13 @@ router.post(
         let college = collegeCache.get(collegeName);
         if (!college) {
           college = await prisma.college.upsert({
-            where: { name: collegeName },
+            where: { id: 'LDRP-ITR' },
             create: {
+              id: 'LDRP-ITR',
               name: collegeName,
-              websiteUrl: `https://www.${collegeName.toLowerCase()}.ac.in`,
+              websiteUrl: 'https://www.ldrp.ac.in',
               address: 'Gujarat',
-              contactNumber: '1234567890',
+              contactNumber: '7923241492',
               logo: `${collegeName.toLowerCase()}_logo.png`,
               images: {},
             },
@@ -111,7 +113,7 @@ router.post(
             where: {
               name_collegeId: {
                 name: deptName,
-                collegeId: college.id,
+                collegeId: 'LDRP-ITR',
               },
             },
             create: {
@@ -119,7 +121,7 @@ router.post(
               abbreviation: deptName,
               hodName: `HOD of ${deptName}`,
               hodEmail: `hod.${deptName.toLowerCase()}@ldrp.ac.in`,
-              collegeId: college.id,
+              collegeId: 'LDRP-ITR',
             },
             update: {},
           });
@@ -187,6 +189,7 @@ router.post(
       const batchSize = 50;
       let batch: StudentCreateInput[] = [];
       const processedRows: StudentCreateInput[] = [];
+      const currentYear = new Date().getFullYear().toString();
 
       for (let rowNumber = 2; rowNumber <= worksheet.rowCount; rowNumber++) {
         const row = worksheet.getRow(rowNumber);
@@ -215,34 +218,38 @@ router.post(
           departmentCache.set(deptName, department);
         }
 
-        const semesterKey = `${department.id}_${semesterNumber}`;
+        const semesterKey = `${department.id}_${semesterNumber}_${currentYear}`;
         let semester = semesterCache.get(semesterKey);
         if (!semester) {
-          semester = await prisma.semester.upsert({
+          semester = await prisma.semester.findFirst({
             where: {
-              departmentId_semesterNumber: {
-                departmentId: department.id,
-                semesterNumber: parseInt(semesterNumber),
-              },
-            },
-            create: {
               departmentId: department.id,
               semesterNumber: parseInt(semesterNumber),
-              academicYear: new Date().getFullYear().toString(),
             },
-            update: {},
           });
+
+          if (!semester) {
+            semester = await prisma.semester.create({
+              data: {
+                departmentId: department.id,
+                semesterNumber: parseInt(semesterNumber),
+                academicYear: currentYear,
+              },
+            });
+          }
+
           semesterCache.set(semesterKey, semester);
         }
 
-        const divisionKey = `${department.id}_${divisionName}`;
+        const divisionKey = `${department.id}_${divisionName}_${semester.id}`;
         let division = divisionCache.get(divisionKey);
         if (!division) {
           division = await prisma.division.upsert({
             where: {
-              departmentId_divisionName: {
+              departmentId_divisionName_semesterId: {
                 departmentId: department.id,
                 divisionName: divisionName,
+                semesterId: semester.id,
               },
             },
             create: {
@@ -262,7 +269,7 @@ router.post(
           enrollmentNumber: row.getCell(3).value?.toString() || '',
           email: row.getCell(7).value?.toString() || '',
           phoneNumber: row.getCell(8).value?.toString() || '',
-          academicYear: new Date().getFullYear().toString(),
+          academicYear: currentYear,
           batch: row.getCell(9).value?.toString() || '',
           departmentId: department.id,
           semesterId: semester.id,
@@ -321,6 +328,7 @@ router.post(
       const batchSize = 50;
       let batch: SubjectCreateInput[] = [];
       const processedRows: SubjectCreateInput[] = [];
+      const currentYear = new Date().getFullYear().toString();
 
       for (let rowNumber = 2; rowNumber <= worksheet.rowCount; rowNumber++) {
         const row = worksheet.getRow(rowNumber);
@@ -348,23 +356,26 @@ router.post(
           departmentCache.set(deptName, department);
         }
 
-        const semesterKey = `${department.id}_${semesterNumber}`;
+        const semesterKey = `${department.id}_${semesterNumber}_${currentYear}`;
         let semester = semesterCache.get(semesterKey);
         if (!semester) {
-          semester = await prisma.semester.upsert({
+          semester = await prisma.semester.findFirst({
             where: {
-              departmentId_semesterNumber: {
-                departmentId: department.id,
-                semesterNumber: parseInt(semesterNumber),
-              },
-            },
-            create: {
               departmentId: department.id,
               semesterNumber: parseInt(semesterNumber),
-              academicYear: new Date().getFullYear().toString(),
             },
-            update: {},
           });
+
+          if (!semester) {
+            semester = await prisma.semester.create({
+              data: {
+                departmentId: department.id,
+                semesterNumber: parseInt(semesterNumber),
+                academicYear: currentYear,
+              },
+            });
+          }
+
           semesterCache.set(semesterKey, semester);
         }
 
